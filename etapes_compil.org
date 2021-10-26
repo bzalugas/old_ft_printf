@@ -1,0 +1,6 @@
+#+TITLE: Etapes_compil
+
+* lancer le make de la libft
+* copier le libft.a dans le dossier ft_printf
+* compiler ft_printf avec -L. -lft
+* convertir en lib : ar rc libftprintf.a *.o
