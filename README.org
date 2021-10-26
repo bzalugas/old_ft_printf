@@ -1,0 +1,11 @@
+#+TITLE: ft_printf
+#+description: readme of the ft_printf project
+#+author: bzalugas
+
+The instructions are simple : recode printf !
+
+* TODO Mandatory part
+** TODO Add libft to project's folder
+** TODO Prepare the Makefile of ft_printf
+** TODO Let's start the code
+* TODO Bonus part
