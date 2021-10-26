@@ -4,8 +4,8 @@
 
 The instructions are simple : recode printf !
 
-* TODO Mandatory part
-** TODO Add libft to project's folder
-** TODO Prepare the Makefile of ft_printf
-** TODO Let's start the code
+* TODO Mandatory part [0%]
++ [ ] Add libft to project's folder
++ [ ] Prepare the Makefile of ft_printf
++ [ ] Let's start the code
 * TODO Bonus part
