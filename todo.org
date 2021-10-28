@@ -1,0 +1,24 @@
+#+TITLE: Todo
+#+description: todos for the ft_printf project
+#+author: bzalugas
+
+The instructions are simple : recode printf !
+
+* TODO Mandatory part [0%]
++ [-] general [4/5]
+  - [X] Add libft to project's folder
+  - [X] Prepare the Makefile of ft_printf
+  - [X] Let's start the code
+  - [X] Learn to use variadic argument
+  - [ ] Find the best functions structure
++ [ ] Conversions [0/9]
+  - [ ] %c
+  - [ ] %s
+  - [ ] %p
+  - [ ] %d
+  - [ ] %i
+  - [ ] %u
+  - [ ] %x
+  - [ ] %X
+  - [ ] %%
+* TODO Bonus part

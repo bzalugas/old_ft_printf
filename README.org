@@ -5,9 +5,8 @@
 ft_printf is my 3^{rd} project at 42. It consists in recoding the printf function of C.
 
 * PROTOTYPE
-~int ft_printf(char *str, ...)~
 #+begin_src c:
-int ft_printg(char *str, ...)
+int ft_printf(char *str, ...)
 #+end_src
 
 * MANDATORY PART
