@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/15 16:01:33 by bzalugas          #+#    #+#              #
-#    Updated: 2021/10/26 15:21:11 by bzalugas         ###   ########.fr        #
+#    Updated: 2021/10/28 18:48:53 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -45,7 +45,7 @@ END		=	"\033[0m"
 
 CLEAN	=	@echo $(RED)"Cleaning objects of $(NAME)"$(END)
 
-BUILT	=	@echo $(GREEN)"Built $(NAME)"$(END)
+BUILT	=	@echo $(GREEN)"$(NAME) built"$(END)
 
 DELETE	=	@echo $(RED)"Cleaning $(NAME)"$(END)
 
