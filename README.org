@@ -2,11 +2,4 @@
 #+description: readme of the ft_printf project
 #+author: bzalugas
 
-The instructions are simple : recode printf !
-
-* TODO Mandatory part [75%]
-+ [X] Add libft to project's folder
-+ [X] Prepare the Makefile of ft_printf
-+ [X] Let's start the code
-+ [ ] Learn to use variadic argument
-* TODO Bonus part
+ft_printf is my 3^rd project at 42. It consists in recoding the printf function of C.
