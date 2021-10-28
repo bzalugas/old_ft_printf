@@ -4,8 +4,9 @@
 
 The instructions are simple : recode printf !
 
-* TODO Mandatory part [66%]
+* TODO Mandatory part [75%]
 + [X] Add libft to project's folder
 + [X] Prepare the Makefile of ft_printf
-+ [ ] Let's start the code
++ [X] Let's start the code
++ [ ] Learn to use variadic argument
 * TODO Bonus part
