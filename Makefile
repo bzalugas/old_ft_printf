@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2021/10/28 20:09:47 by bzalugas         ###   ########.fr        #
+#    Updated: 2021/10/29 00:21:14 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -88,8 +88,8 @@ $(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c libft
 					@echo "$(GREEN)All sources compiled$(END)"
 
 #Rule for the tester
-tester.out:			tester.c
-					@$(CC) $(CFLAGS) -o $(TESTER_NAME) $(PRINTF_FLAG)
+$(TESTER_NAME):		tester.c
+					@$(CC) $(CFLAGS) -o $(TESTER_NAME) tester.c $(PRINTF_FLAG)
 					@echo "$(GREEN)Tester compiled$(END)"
 
 ifeq ($(OUT),true)
