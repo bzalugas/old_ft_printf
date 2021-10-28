@@ -1,0 +1,5 @@
+#+TITLE: Readme
+
+This is the libft modified in order to use it for other projects. This version is not the evaluated one.
+
+I can add, delete, change functions & makefile
