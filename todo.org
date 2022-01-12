@@ -4,14 +4,97 @@
 
 The instructions are simple : recode printf !
 
-* TODO Mandatory part [50%]
-+ [X] general [5/5]
+* IN PROGRESS Mandatory part [25%] [1/4]
+** DONE general [5/5]
   - [X] Add libft to project's folder
   - [X] Prepare the Makefile of ft_printf
   - [X] Let's start the code
   - [X] Learn to use variadic argument
   - [X] Find the best functions structure
-+ [ ] Conversions [0/9]
+** IN PROGRESS tests [0/11]
+*** IN PROGRESS General tests [1/4]
++ [X] insufficient arguments
++ [ ] too many arguments
++ [ ] empty string
++ [ ] multiple strings
+*** CODE %c tests [0/3]
++ [ ] normal input
++ [ ] same input without following argument of %c
++ [ ] multiple %c in input
+*** CODE %s tests [0/4]
++ [ ] normal input
++ [ ] null argument
++ [ ] empty string argument
++ [ ]
+*** CODE %p tests [0/3]
++ [ ] normal input
++ [ ] null pointer
++ [ ] incorrect pointer
+*** CODE %d tests [0/4]
++ [ ] normal input
++ [ ] incorrect int (too high)
++ [ ] incorrect int (too low)
++ [ ] char argument
+*** CODE %i tests [/]
+*** CODE %u tests [/]
+*** CODE %x tests [/]
+*** CODE %X tests [/]
+*** CODE %% test [/]
+*** CODE Complete tests [/]
+
+** CODE functions [0%] [0/10]
+*** CODE ft_printf
+*** CODE %c conversion (char)
+*** CODE %s conversion (char *)
+*** CODE %p conversion (pointer -> hexadecimal)
+*** CODE %d conversion (int -> decimal)
+*** CODE %i conversion (int -> int (base 10))
+*** CODE %u conversion (unsigned int -> unsigned decimal)
+*** CODE %x conversion (unsigned int -> unsigned hexadecimal lowercase)
+*** CODE %X consersion (unsigned int -> unsigned hexadecimal uppercase)
+*** CODE %% conversion (print % sign)
++ [ ] returns the char '%'
+
+** TODO pass all tests [0/2] [0%]
+*** TODO pass ft_printf tests [0/24] [0%]
++ [ ] insufficient arguments
++ [ ] too many arguments
++ [ ] empty string
++ [ ] multiple strings
++ [ ] "% %" in the string
+
++ [ ] normal %c input
++ [ ] same input without following argument of %c
++ [ ] multiple %c in input
+
++ [ ] normal %s input
++ [ ] null argument
++ [ ] empty string argument
++ [ ]
+
++ [ ] normal %p input
++ [ ] null pointer
++ [ ] incorrect pointer
+
++ [ ] normal %d input
++ [ ] incorrect int (too high)
++ [ ] incorrect int (too low)
++ [ ] char argument
+
++ [ ] normal %i input
+
++ [ ] normal %u input
+
++ [ ] normal %x input
+
++ [ ] normal %X input
+
++ [ ] normal %% input
+
+*** TODO pass intermediary functions [0%] [0/2]
++ [ ]
+
+** Conversions check [0/9]
   - [ ] %c
   - [ ] %s
   - [ ] %p
@@ -21,23 +104,15 @@ The instructions are simple : recode printf !
   - [ ] %x
   - [ ] %X
   - [ ] %%
-** CODE tests [0/11]
-*** CODE General tests
-+ [ ] insufficient arguments
-+ [ ] too many arguments
-+ [ ] empty string
-*** CODE %c tests
-+ [ ] normal input
-+ [ ] same input without following argument of %c
-+ [ ] multiple %c in input
-*** CODE %s tests
-*** CODE %p tests
-*** CODE %d tests
-*** CODE %i tests
-*** CODE %u tests
-*** CODE %x tests
-*** CODE %X tests
-*** CODE %% test
-*** CODE Complete tests
 
-* TODO Bonus part
+* TODO Bonus part [0%]
+** CODE flags tests [0/8]
+*** CODE flag '-' tests
+*** CODE flag '0' tests
+*** CODE flag '.' tests
+*** CODE combination flags tests
+*** CODE flag '#' tests
+*** CODE flag ' ' tests
+*** CODE flag '+' tests
+
+** CODE functions

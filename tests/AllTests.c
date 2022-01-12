@@ -6,12 +6,13 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/12 11:58:34 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/12 15:14:08 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "CuTest.h"
+#include <fcntl.h>
 
 CuSuite	*ft_printfGetSuite();
 
@@ -33,4 +34,5 @@ void	RunAllTests()
 int		main(void)
 {
 	RunAllTests();
+	printf("mon decimal : %d", 4);
 }

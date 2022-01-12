@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/12 12:07:36 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/12 12:13:32 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -104,7 +104,7 @@ $(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c libft
 
 #Rule for the tests
 $(TESTER_NAME):		$(SRCS_TESTS)
-					@$(CC) $(CFLAGS) -o $(TESTER_NAME) $(SRCS_TESTS) $(PRINTF_FLAG)
+					@$(CC) -o $(TESTER_NAME) $(SRCS_TESTS) $(PRINTF_FLAG)
 
 ifeq ($(OUT),true)
 clean:
