@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2021/10/29 00:21:14 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/12 12:07:36 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,9 +24,15 @@ DIR_OUT		=	obj
 
 DIR_LIBFT	=	libft
 
-S_TESTER	=	tester.c
+# S_TESTER	=	tester.c
 
-O_TESTER	=	$(S_TESTER:.c=.out)
+# O_TESTER	=	$(S_TESTER:.c=.out)
+
+DIR_TESTS	=	tests
+
+SRC_TESTS	=	CuTest.c AllTests.c ft_printfTest.c
+
+SRCS_TESTS	=	$(addprefix $(DIR_TESTS)/,$(SRC_TESTS))
 
 ##### Name of the program #####
 
@@ -70,7 +76,11 @@ $(NAME):			$(OBJS)
 					@$(LIB) $(NAME) $(OBJS)
 					@echo "$(GREEN)$(NAME) built$(END)"
 
-test:				$(NAME) $(O_TESTER)
+# test:				$(NAME) $(O_TESTER)
+# 					@echo
+# 					./$(TESTER_NAME)
+
+test:				$(NAME) $(TESTER_NAME)
 					@echo
 					./$(TESTER_NAME)
 
@@ -88,9 +98,13 @@ $(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c libft
 					@echo "$(GREEN)All sources compiled$(END)"
 
 #Rule for the tester
-$(TESTER_NAME):		tester.c
-					@$(CC) $(CFLAGS) -o $(TESTER_NAME) tester.c $(PRINTF_FLAG)
-					@echo "$(GREEN)Tester compiled$(END)"
+# $(TESTER_NAME):		tester.c
+# 					@$(CC) $(CFLAGS) -o $(TESTER_NAME) tester.c $(PRINTF_FLAG)
+# 					@echo "$(GREEN)Tester compiled$(END)"
+
+#Rule for the tests
+$(TESTER_NAME):		$(SRCS_TESTS)
+					@$(CC) $(CFLAGS) -o $(TESTER_NAME) $(SRCS_TESTS) $(PRINTF_FLAG)
 
 ifeq ($(OUT),true)
 clean:
@@ -103,12 +117,14 @@ clean:
 endif
 
 fclean:				clean
+					@make -C $(DIR_LIBFT) fclean
+					@echo "$(GREEN)fclean libft$(END)"
 					@$(RM) $(NAME)
 					@$(RM) $(LIBFT_NAME)
-					@$(RM) $(O_TESTER)
+					@$(RM) $(TESTER_NAME)
 					@echo "$(GREEN)$(NAME) deleted$(END)"
 					@echo "$(GREEN)$(LIBFT_NAME) deleted$(END)"
-					@echo "$(GREEN)$(O_TESTER) deleted$(END)"
+					@echo "$(GREEN)$(TESTER_NAME) deleted$(END)"
 
 re:					fclean all
 

@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   AllTests.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/12 11:21:31 by bzalugas         ###   ########.fr       */
+/*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
+/*   Updated: 2022/01/12 11:58:34 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
+#include "CuTest.h"
 
-int	ft_printf(const char *str, ...)
+CuSuite	*ft_printfGetSuite();
+
+void	RunAllTests()
 {
-	va_list	list;
-	int		i;
+	CuString	*output = CuStringNew();
+	CuSuite		*suite = CuSuiteNew();
 
-	va_start(list, str);
-	i = -1;
-	while (str[++i] && str[i] != '%')
-		ft_putchar_fd(str[i],1);
-	if (str[i] == '%')
-		i++;
-	if (str[i] && str[i] == 's')
-		ft_putstr_fd(va_arg(list, char *), 1);
-	while (str[++i])
-		ft_putchar_fd(str[i], 1);
-	return (0);
+	CuSuiteAddSuite(suite, ft_printfGetSuite());
+
+	CuSuiteRun(suite);
+	CuSuiteSummary(suite, output);
+	CuSuiteDetails(suite, output);
+	printf("%s\n", output->buffer);
+	CuStringDelete(output);
+	CuSuiteDelete(suite);
+}
+
+int		main(void)
+{
+	RunAllTests();
 }

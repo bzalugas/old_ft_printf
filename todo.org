@@ -4,13 +4,13 @@
 
 The instructions are simple : recode printf !
 
-* TODO Mandatory part [0%]
-+ [-] general [4/5]
+* TODO Mandatory part [50%]
++ [X] general [5/5]
   - [X] Add libft to project's folder
   - [X] Prepare the Makefile of ft_printf
   - [X] Let's start the code
   - [X] Learn to use variadic argument
-  - [ ] Find the best functions structure
+  - [X] Find the best functions structure
 + [ ] Conversions [0/9]
   - [ ] %c
   - [ ] %s
@@ -21,4 +21,23 @@ The instructions are simple : recode printf !
   - [ ] %x
   - [ ] %X
   - [ ] %%
+** CODE tests [0/11]
+*** CODE General tests
++ [ ] insufficient arguments
++ [ ] too many arguments
++ [ ] empty string
+*** CODE %c tests
++ [ ] normal input
++ [ ] same input without following argument of %c
++ [ ] multiple %c in input
+*** CODE %s tests
+*** CODE %p tests
+*** CODE %d tests
+*** CODE %i tests
+*** CODE %u tests
+*** CODE %x tests
+*** CODE %X tests
+*** CODE %% test
+*** CODE Complete tests
+
 * TODO Bonus part
