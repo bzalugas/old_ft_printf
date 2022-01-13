@@ -12,11 +12,13 @@ The instructions are simple : recode printf !
   - [X] Learn to use variadic argument
   - [X] Find the best functions structure
 ** IN PROGRESS tests [0/11]
-*** IN PROGRESS General tests [1/4]
+*** CODING General tests [1/6]
 + [X] insufficient arguments
 + [ ] too many arguments
 + [ ] empty string
 + [ ] multiple strings
++ [ ] % just before '\0'
++ [ ] alone %
 *** CODE %c tests [0/3]
 + [ ] normal input
 + [ ] same input without following argument of %c
@@ -53,7 +55,7 @@ The instructions are simple : recode printf !
 *** CODE %x conversion (unsigned int -> unsigned hexadecimal lowercase)
 *** CODE %X consersion (unsigned int -> unsigned hexadecimal uppercase)
 *** CODE %% conversion (print % sign)
-+ [ ] returns the char '%'
++ [ ] return the char '%'
 
 ** TODO pass all tests [0/2] [0%]
 *** TODO pass ft_printf tests [0/24] [0%]

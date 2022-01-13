@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/10/29 00:24:11 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:34:18 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 # include "../libft/libft.h"
 # include <stdarg.h>
+# define CONVERSION_SYMBOL '%'
 
 int	ft_printf(const char *str, ...);
 

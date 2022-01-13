@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/12 17:11:03 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:18:49 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,8 @@
 int	ft_printf(const char *str, ...)
 {
 	va_list	list;
+
+	va_start(list, str);
+	va_end(list);
+	return (0);
 }
