@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 21:05:00 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/02/04 17:03:40 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:40:22 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static size_t	ft_count(char const *s, char c)
 
 static char		*ft_cut(char const *s, char c, size_t *start)
 {
-	int		rank;
+	/* int		rank; */
 	int		i;
-	int		check;
-	int		end;
+	/* int		check; */
+	/* int		end; */
 	char	*tmp;
 
-	rank = -1;
+	/* rank = -1; */
 	i = *start;
-	check = 1;
-	end = 0;
+	/* check = 1; */
+	/* end = 0; */
 	while (s && s[i] && s[i] == c)
 		i++;
 	*start = i;

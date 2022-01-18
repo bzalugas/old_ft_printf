@@ -6,13 +6,13 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/12 12:13:32 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/18 18:11:45 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ##### Sources ######
 
-SRC			=	ft_printf.c
+SRC			=	ft_printf.c buffer_char.c buffer.c
 
 SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 
@@ -30,7 +30,7 @@ DIR_LIBFT	=	libft
 
 DIR_TESTS	=	tests
 
-SRC_TESTS	=	CuTest.c AllTests.c ft_printfTest.c
+SRC_TESTS	=	CuTest.c AllTests.c ft_printfTest.c bufferTests.c
 
 SRCS_TESTS	=	$(addprefix $(DIR_TESTS)/,$(SRC_TESTS))
 

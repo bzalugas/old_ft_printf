@@ -6,15 +6,17 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/12 15:14:08 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/18 19:38:43 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include "../includes/buffer.h"
 #include "CuTest.h"
 #include <fcntl.h>
 
 CuSuite	*ft_printfGetSuite();
+CuSuite *bufferGetSuite();
 
 void	RunAllTests()
 {
@@ -22,6 +24,7 @@ void	RunAllTests()
 	CuSuite		*suite = CuSuiteNew();
 
 	CuSuiteAddSuite(suite, ft_printfGetSuite());
+	CuSuiteAddSuite(suite, bufferGetSuite());
 
 	CuSuiteRun(suite);
 	CuSuiteSummary(suite, output);
@@ -34,5 +37,5 @@ void	RunAllTests()
 int		main(void)
 {
 	RunAllTests();
-	printf("mon decimal : %d", 4);
+	return (0);
 }
