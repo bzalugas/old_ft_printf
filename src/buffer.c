@@ -6,13 +6,13 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:49:40 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/18 18:24:53 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:58:25 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
-#include "../includes/leaks_tester.h"
+/* #include "../includes/leaks_tester.h" */
 
-t_buffer	*buffer_new()
+t_buffer	*buffer_new(void)
 {
 	t_buffer		*new_buf;
 
@@ -23,20 +23,43 @@ t_buffer	*buffer_new()
 	return (new_buf);
 }
 
-void		buffer_add_char(t_buffer *buf, char c)
+/*
+void	buffer_add_char(t_buffer *buf, char c)
 {
 	t_buffer_char	*new_char;
 
 	if (!buf)
-		return;
+		return ;
 	new_char = buffer_char_new(c);
 	if (!buf->first)
 		buf->first = new_char;
 	else
 		buffer_char_add(&buf->first, new_char);
+}*/
+
+void	buffer_add_str(t_buffer *buf, char *str, int start, int length)
+{
+	t_buffer_char	*new_char;
+	int				strlen;
+	int				i;
+
+	strlen = ft_strlen(str);
+	if (!buf || !str || length + start > strlen)
+		return ;
+	if (length == -1)
+		length = strlen;
+	i = start - 1;
+	while (++i < length)
+	{
+		new_char = buffer_char_new(str[i]);
+		if (!buf->first)
+			buf->first = new_char;
+		else
+			buffer_char_add(&buf->first, new_char);
+	}
 }
 
-int			buffer_size(t_buffer *buf)
+int	buffer_size(t_buffer *buf)
 {
 	if (buf && buf->first)
 		return (buffer_char_size(buf->first));
@@ -45,17 +68,17 @@ int			buffer_size(t_buffer *buf)
 	return (-1);
 }
 
-void		buffer_print_fd(t_buffer *buf, int fd)
+void	buffer_print_fd(t_buffer *buf, int fd)
 {
 	char			*str;
 	int				i;
 	t_buffer_char	*next_char;
 
 	if (!buf)
-		return;
+		return ;
 	str = malloc(sizeof(char) * buffer_size(buf) + 1);
 	if (!str)
-		return;
+		return ;
 	next_char = buf->first;
 	i = 0;
 	while (next_char && i < buffer_size(buf))
@@ -68,10 +91,9 @@ void		buffer_print_fd(t_buffer *buf, int fd)
 	free(str);
 }
 
-void		buffer_close(t_buffer **buf)
+void	buffer_close(t_buffer **buf)
 {
 	buffer_char_clear(&(*buf)->first);
 	free(*buf);
 	*buf = NULL;
-	/* free(buf); */
 }

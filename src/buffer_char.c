@@ -6,11 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:24:26 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/18 18:24:46 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:30:26 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
-#include "../includes/leaks_tester.h"
+/* #include "../includes/leaks_tester.h" */
 
 t_buffer_char	*buffer_char_new(char content)
 {
@@ -34,7 +34,7 @@ t_buffer_char	*buffer_char_last(t_buffer_char *first)
 	return (tmp);
 }
 
-int				buffer_char_size(t_buffer_char *first)
+int	buffer_char_size(t_buffer_char *first)
 {
 	int				i;
 	t_buffer_char	*tmp;
@@ -49,7 +49,7 @@ int				buffer_char_size(t_buffer_char *first)
 	return (i);
 }
 
-void			buffer_char_add(t_buffer_char **first, t_buffer_char *new)
+void	buffer_char_add(t_buffer_char **first, t_buffer_char *new)
 {
 	t_buffer_char	*last;
 
@@ -62,7 +62,7 @@ void			buffer_char_add(t_buffer_char **first, t_buffer_char *new)
 		*first = new;
 }
 
-void			buffer_char_clear(t_buffer_char **first)
+void	buffer_char_clear(t_buffer_char **first)
 {
 	t_buffer_char	*tmp;
 
@@ -73,5 +73,4 @@ void			buffer_char_clear(t_buffer_char **first)
 		*first = tmp;
 	}
 	*first = NULL;
-	/* free(first); */
 }
