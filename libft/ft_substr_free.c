@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 13:30:07 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:43:38 by bzalugas         ###   ########.fr       */
+/*   Created: 2021/01/19 00:16:54 by bzalugas          #+#    #+#             */
+/*   Updated: 2022/01/19 21:06:24 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_substr_free(char *s, unsigned int start, size_t len, int free_s)
 {
-	size_t	s1_len;
-	size_t	s2_len;
 	char	*new;
+	size_t	i;
 
-	if (!s1 || !s2)
+	if (!s)
 		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	new = (char *)malloc(sizeof(char) * s1_len + s2_len + 1);
+	new = malloc(sizeof(char) * len + 1);
 	if (!new)
 		return (NULL);
-	ft_strlcpy(new, s1, s1_len + 1);
-	ft_strlcat(new, s2, s1_len + s2_len + 1);
+	i = 0;
+	if (start < ft_strlen(s))
+	{
+		while (s[start + i] && i < len)
+		{
+			new[i] = s[start + i];
+			i++;
+		}
+	}
+	new[i] = '\0';
+	if (free_s && s)
+		free(s);
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:12:34 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:44:51 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 21:07:50 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ void				*ft_calloc(size_t count, size_t size);
 
 char				*ft_strdup(const char *s1);
 
-char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_substr_free(char *s, unsigned int start, size_t len,
+						int free_s);
 
-char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin_free(char *s1, char *s2, int free_s1,
+						int free_s2);
 
 char				*ft_strtrim(char const *s1, char const *set);
 
