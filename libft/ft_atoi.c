@@ -6,15 +6,15 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 15:12:54 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/01/15 22:15:50 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:53:24 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	int i;
-	int sign;
-	int nb;
+	int	i;
+	int	sign;
+	int	nb;
 
 	i = 0;
 	sign = 1;

@@ -6,13 +6,13 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 02:02:13 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/01/16 02:46:36 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:49:29 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	if (ft_islower(c) || ft_isupper(c))
 		return (1);

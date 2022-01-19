@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 21:05:00 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/18 17:40:22 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:48:56 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,26 @@ static size_t	ft_count(char const *s, char c)
 	return (count);
 }
 
-static char		*ft_cut(char const *s, char c, size_t *start)
+static char	*ft_cut(char const *s, char c, size_t *start)
 {
-	/* int		rank; */
 	int		i;
-	/* int		check; */
-	/* int		end; */
 	char	*tmp;
 
-	/* rank = -1; */
 	i = *start;
-	/* check = 1; */
-	/* end = 0; */
 	while (s && s[i] && s[i] == c)
 		i++;
 	*start = i;
 	while (s && s[i] && s[i] != c)
 		i++;
-	if (!(tmp = malloc(sizeof(char) * i - *start + 1)))
+	tmp = malloc(sizeof(char) * i - *start + 1);
+	if (!tmp)
 		return (NULL);
 	ft_strlcpy(tmp, &s[*start], i - *start + 1);
 	*start = i;
 	return (tmp);
 }
 
-static int		ft_cleanup(char **str, int i)
+static int	ft_cleanup(char **str, int i)
 {
 	while (i >= 0)
 		free(str[i--]);
@@ -67,7 +62,7 @@ static int		ft_cleanup(char **str, int i)
 	return (1);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**new;
 	int		count;
@@ -75,12 +70,16 @@ char			**ft_split(char const *s, char c)
 	size_t	start;
 
 	count = ft_count(s, c);
-	if (!(new = ft_calloc(count + 1, sizeof(char *))))
+	new = ft_calloc(count + 1, sizeof(char *));
+	if (!new)
 		return (NULL);
 	i = -1;
 	start = 0;
 	while (++i < count)
-		if (!(new[i] = ft_cut(s, c, &start)) && ft_cleanup(new, i))
+	{
+		new[i] = ft_cut(s, c, &start);
+		if (!new && ft_cleanup(new, i))
 			return (NULL);
+	}
 	return (new);
 }

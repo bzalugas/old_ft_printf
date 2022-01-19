@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 22:54:00 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/01/25 12:42:41 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:39:14 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (f)
+	{
 		while (lst)
 		{
 			(*f)(lst->content);
 			lst = lst->next;
 		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 13:56:44 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/01/25 21:48:41 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:51:42 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	is_set(char c, char *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
@@ -43,7 +43,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 			j--;
 		len = j - i + 1;
 	}
-	if (!(new = (char *)malloc(sizeof(char) * len + 1)))
+	new = (char *)malloc(sizeof(char) * len + 1);
+	if (!new)
 		return (NULL);
 	ft_strlcpy(new, &s1[i], len + 1);
 	return (new);

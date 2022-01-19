@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:12:34 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/01/26 10:14:34 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:44:51 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}				t_list;
 
 void				*ft_memset(void *b, int c, size_t len);
 
@@ -63,7 +63,7 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 char				*ft_strnstr(const char *haystack, const char *needle,
-								size_t len);
+						size_t len);
 
 int					ft_atoi(const char *str);
 
@@ -108,12 +108,18 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-								void (*del)(void *));
+						void (*del)(void *));
 
 int					ft_islower(int c);
 
 int					ft_isupper(int c);
 
 void				ft_putchar(int c);
+
+int					ft_find_char(char c, char *str);
+
+char				*ft_base_convert(char *num, char *src_base, char *dst_base);
+
+void				ft_lstdelcontent(void *content);
 
 #endif
