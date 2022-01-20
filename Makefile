@@ -6,13 +6,13 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/18 18:11:45 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/19 20:24:37 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ##### Sources ######
 
-SRC			=	ft_printf.c buffer_char.c buffer.c
+SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c pointer_to_hexa.c
 
 SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 
@@ -30,7 +30,7 @@ DIR_LIBFT	=	libft
 
 DIR_TESTS	=	tests
 
-SRC_TESTS	=	CuTest.c AllTests.c ft_printfTest.c bufferTests.c
+SRC_TESTS	=	CuTest.c AllTests.c ft_printfTest.c bufferTests.c intermediaryTests.c
 
 SRCS_TESTS	=	$(addprefix $(DIR_TESTS)/,$(SRC_TESTS))
 
@@ -46,7 +46,7 @@ TESTER_NAME	=	tester.out
 
 CC			=	cc
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 PRINTF_FLAG	=	-L. -lftprintf
 
@@ -104,7 +104,7 @@ $(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c libft
 
 #Rule for the tests
 $(TESTER_NAME):		$(SRCS_TESTS)
-					@$(CC) -o $(TESTER_NAME) $(SRCS_TESTS) $(PRINTF_FLAG)
+					@$(CC) -o $(TESTER_NAME) $(SRCS_TESTS) -g $(PRINTF_FLAG)
 
 ifeq ($(OUT),true)
 clean:

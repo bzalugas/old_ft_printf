@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 16:37:59 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:24:11 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 CuSuite	*ft_printfGetSuite();
 CuSuite *bufferGetSuite();
+CuSuite *intermediaryGetSuite();
 
 void	RunAllTests()
 {
@@ -25,6 +26,7 @@ void	RunAllTests()
 
 	CuSuiteAddSuite(suite, ft_printfGetSuite());
 	CuSuiteAddSuite(suite, bufferGetSuite());
+	CuSuiteAddSuite(suite, intermediaryGetSuite());
 
 	CuSuiteRun(suite);
 	CuSuiteSummary(suite, output);
@@ -36,6 +38,13 @@ void	RunAllTests()
 
 int		main(void)
 {
-	RunAllTests();
+	/* RunAllTests(); */
+	void *p;
+	unsigned long int addr;
+
+	addr = (unsigned long int)p;
+	printf("%lu\n", addr);
+	printf("%p\n", p);
+	/* printf("%lu\n", p); */
 	return (0);
 }

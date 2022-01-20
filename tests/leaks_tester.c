@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 13:33:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/18 19:33:24 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:51:49 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,14 +160,7 @@ void delete(void *content)
 int main(void)
 {
 	t_buffer *buf = buffer_new();
-	buffer_add_char(buf, 'B');
-	buffer_add_char(buf, 'A');
-	buffer_add_char(buf, 'S');
-	buffer_add_char(buf, 'T');
-	buffer_add_char(buf, 'I');
-	buffer_add_char(buf, 'E');
-	buffer_add_char(buf, 'N');
-	buffer_add_char(buf, '\n');
+	buffer_add_str(buf, "BASTIEN\n", 0, -1);
 	buffer_print_fd(buf, 1);
 	buffer_close(&buf);
 

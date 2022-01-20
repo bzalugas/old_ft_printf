@@ -11,7 +11,7 @@ The instructions are simple : recode printf !
   - [X] Let's start the code
   - [X] Learn to use variadic argument
   - [X] Find the best functions structure
-** IN PROGRESS tests [1/11]
+** IN PROGRESS tests [1/12]
 *** CODING General tests [1/6]
 + [X] insufficient arguments
 + [ ] too many arguments
@@ -50,6 +50,8 @@ The instructions are simple : recode printf !
 + [ ] %%%
 *** CODE Complete tests [/]
 + [ ] mix all conversions
+*** CODE intermediary functions tests
++ [X] find_conversion_directiveTests
 *** CODED Buffer Management tests [2/2]
 CLOSED: [2022-01-18 Tue 19:37]
 + [X] basic test
@@ -57,6 +59,7 @@ CLOSED: [2022-01-18 Tue 19:37]
 
 ** CODE functions [9%] [1/11]
 *** CODE ft_printf
++ [ ] function to treat the string & call conversions functions
 *** CODE %c conversion (char)
 *** CODE %s conversion (char *)
 *** CODE %p conversion (pointer -> hexadecimal)
@@ -66,7 +69,6 @@ CLOSED: [2022-01-18 Tue 19:37]
 *** CODE %x conversion (unsigned int -> unsigned hexadecimal lowercase)
 *** CODE %X consersion (unsigned int -> unsigned hexadecimal uppercase)
 *** CODE %% conversion (print % sign)
-+ [ ] return the char '%'
 *** CODED Buffer management
 CLOSED: [2022-01-18 Tue 19:34]
 + [X] function ~t_buffer * buffer_new()~
