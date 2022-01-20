@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:19:16 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/20 20:48:27 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define FLAGS "-0.# +"
 # define MAX_FLAGS 5
 
-char	*pointer_to_hexa(void *p);
+char	*pointer_to_hexa(void *p, int upper_case);
 
 char	*find_conversion_directive(const char *str);
 int		convert(const char *str, va_list args, t_buffer *buf);

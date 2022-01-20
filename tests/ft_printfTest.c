@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:42 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 18:53:38 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/20 19:37:54 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	basicPrintfTests(CuTest *tc)
 {
-
+	
 }
 
 void	insufficientArgumentsTest(CuTest *tc)

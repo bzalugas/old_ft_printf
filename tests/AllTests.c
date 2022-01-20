@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:24:11 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:50:49 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ void	RunAllTests()
 
 int		main(void)
 {
-	/* RunAllTests(); */
-	void *p;
-	unsigned long int addr;
-
-	addr = (unsigned long int)p;
-	printf("%lu\n", addr);
-	printf("%p\n", p);
-	/* printf("%lu\n", p); */
+	RunAllTests();
 	return (0);
 }

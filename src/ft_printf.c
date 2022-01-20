@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:10:13 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:18:44 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*find_conversion_directive(const char *str)
 		if (CONVERSION[i] == str[j])
 			directive[j] = str[j];
 	}
-	return (ft_substr(directive, 0, ft_strlen(directive)));
+	return (ft_substr_free(directive, 0, ft_strlen(directive),0));
 }
 
 int	convert(const char *str, va_list args, t_buffer *buf)
@@ -102,7 +102,6 @@ int	ft_printf(const char *str, ...)
 	buf = buffer_new();
 	va_start(args, str);
 	printed_chars = str_transform(str, args, buf);
-	/*Treat the str*/
 	va_end(args);
 	buffer_print_fd(buf, 1);
 	buffer_close(&buf);
