@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/21 12:58:37 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/21 14:50:13 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	put_flag(char *str, t_flags *flags)
 	else if (str[0] == '+')
 		flags->plus = 1;
 	else
-		flags->conversion = c;
+		flags->conversion = str[0];
 }
 
 t_flags	find_flags(const char *str)
@@ -73,16 +73,16 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 		handle_char('%', buf);
 	else if (flags.conversion == 's')
 		handle_string(va_arg(args, char *), flags, buf);
-	else if (flags.conversion == 'p')
-		handle_pointer(va_arg(args,unsigned long), flags, buf);
-	else if (flags.conversion == 'd')
-		handle_decimal(va_arg(args, int), flags, buf);
-	else if (flags.conversion == 'i')
-		handle_int(va_arg(args, int),flags, buf);
-	else if (flags.conversion == 'u')
-		handle_u_decimal(va_arg(args, unsigned int), flags, buf);
-	else if (flags.conversion == 'x' || flags.conversion == 'X')
-		handle_hexa(va_arg(args,unsigned int), flags, buf);
+	/* else if (flags.conversion == 'p') */
+	/* 	handle_pointer(va_arg(args,unsigned long), flags, buf); */
+	/* else if (flags.conversion == 'd') */
+	/* 	handle_decimal(va_arg(args, int), flags, buf); */
+	/* else if (flags.conversion == 'i') */
+	/* 	handle_int(va_arg(args, int),flags, buf); */
+	/* else if (flags.conversion == 'u') */
+	/* 	handle_u_decimal(va_arg(args, unsigned int), flags, buf); */
+	/* else if (flags.conversion == 'x' || flags.conversion == 'X') */
+	/* 	handle_hexa(va_arg(args,unsigned int), flags, buf); */
 		forward = flags.minus + flags.zero + flags.dot + flags.hashtag +
 			flags.space + flags.plus;
 	if (flags.conversion != '\0')
@@ -99,13 +99,20 @@ void	str_transform(const char *str, va_list args, t_buffer *buf)
 	start = 0;
 	while (str && str[i])
 	{
-		while (str[i] && str[i] != CONVERT_SYMBOL)
+		if (str[i] == CONVERT_SYMBOL)
+		{
+			buffer_add_str(buf, str, start, i - start);
+			if (str[i + 1])
+				i += convert(&str[i], args, buf) - 1;
+			start = i;
+			if (str[i])
+				i++;
+		}
+		else
 			i++;
-		buffer_add_str(buf, str, start, i);
-		if (str[i] && str[i] == CONVERT_SYMBOL)
-			i += convert(&str[i], args, buf);
-		start = i;
 	}
+	if (start != i)
+		buffer_add_str(buf, str, start, i - start);
 }
 
 int	ft_printf(const char *str, ...)

@@ -6,13 +6,14 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/19 20:24:37 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/21 13:27:21 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ##### Sources ######
 
-SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c pointer_to_hexa.c
+SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c pointer_to_hexa.c \
+				handle_char.c handle_string.c
 
 SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 
