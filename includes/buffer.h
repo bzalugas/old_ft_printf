@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:49:13 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:04:10 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:18:43 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void			buffer_add_char(t_buffer *buf, char c);
 void			buffer_add_str(t_buffer *buf, const char *str, int start,
 					int length);
 int				buffer_size(t_buffer *buf);
-void			buffer_print_fd(t_buffer *buf, int fd);
+size_t			buffer_print_fd(t_buffer *buf, int fd);
 
 #endif

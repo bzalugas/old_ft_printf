@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:49:40 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:03:42 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:18:16 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -32,17 +32,17 @@ int	buffer_size(t_buffer *buf)
 	return (-1);
 }
 
-void	buffer_print_fd(t_buffer *buf, int fd)
+size_t	buffer_print_fd(t_buffer *buf, int fd)
 {
 	char			*str;
 	int				i;
 	t_buffer_char	*next_char;
 
 	if (!buf)
-		return ;
+		return (0);
 	str = malloc(sizeof(char) * buffer_size(buf) + 1);
 	if (!str)
-		return ;
+		return (0);
 	next_char = buf->first;
 	i = 0;
 	while (next_char && i < buffer_size(buf))
@@ -53,6 +53,7 @@ void	buffer_print_fd(t_buffer *buf, int fd)
 	str[i] = '\0';
 	ft_putstr_fd(str, fd);
 	free(str);
+	return (buffer_size(buf));
 }
 
 void	buffer_close(t_buffer **buf)
