@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/20 20:48:27 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:54:11 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,39 @@
 # define CONVERT_SYMBOL '%'
 # define CONVERSION "cspdiuxX%"
 # define FLAGS "-0.# +"
-# define MAX_FLAGS 5
+
+typedef struct s_flags
+{
+	unsigned	minus : 1;
+	unsigned	zero : 1;
+	unsigned	dot : 1;
+	int			precision;
+	unsigned	hashtag : 1;
+	unsigned	space : 1;
+	unsigned	plus : 1;
+	char		conversion;
+}				t_flags;
+
+/*			CONVERTERS				*/
 
 char	*pointer_to_hexa(void *p, int upper_case);
 
-char	*find_conversion_directive(const char *str);
+/*			HANDLERS				*/
+
+void	handle_char(int c, t_buffer *buf);
+void	handle_string(const char *str, t_flags flags, t_buffer *buf);
+void	handle_pointer(unsigned long p, t_flags flags, t_buffer *buf);
+void	handle_decimal(int n, t_flags flags, t_buffer *buf);
+void	handle_int(int n, t_flags flags, t_buffer *buf);
+void	handle_u_decimal(unsigned int n, t_flags flags, t_buffer *buf);
+void	handle_hexa(unsigned int n, t_flags flags, t_buffer *buf);
+
+/*			MAIN FUNCTIONS			*/
+
+void	put_flag(char *str, t_flags *flags);
+t_flags	find_flags(const char *str);
 int		convert(const char *str, va_list args, t_buffer *buf);
-int		str_transform(const char *str, va_list args, t_buffer *buf);
+void	str_transform(const char *str, va_list args, t_buffer *buf);
 int		ft_printf(const char *str, ...);
 
 #endif

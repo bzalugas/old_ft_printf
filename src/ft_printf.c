@@ -6,91 +6,106 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/20 18:18:44 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:58:37 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
-char	*find_conversion_directive(const char *str)
+void	put_flag(char *str, t_flags *flags)
+{
+	if (str[0] == '-')
+		flags->minus = 1;
+	else if (str[0] == '0')
+		flags->zero = 1;
+	else if (str[0] == '.')
+	{
+		flags->dot = 1;
+		flags->precision = ft_atoi(str + 1);
+	}
+	else if (str[0] == '#')
+		flags->hashtag = 1;
+	else if (str[0] == ' ')
+		flags->space = 1;
+	else if (str[0] == '+')
+		flags->plus = 1;
+	else
+		flags->conversion = c;
+}
+
+t_flags	find_flags(const char *str)
 {
 	int		i;
 	int		j;
-	char	directive[MAX_FLAGS];
+	t_flags	flags;
 
-	i = -1;
-	while (++i < MAX_FLAGS)
-		directive[i] = '\0';
 	i = -1;
 	j = 0;
 	while (FLAGS[++i])
 	{
-		if (FLAGS[i] == str[j])
+		if (str[j] == FLAGS[i])
 		{
-			directive[j] = str[j];
-			i = 0;
+			put_flag(&FLAGS[i], &flags);
+			i = -1;
 			j++;
 		}
 	}
-	i = -1;
-	while (CONVERSION[++i])
-	{
-		if (CONVERSION[i] == str[j])
-			directive[j] = str[j];
-	}
-	return (ft_substr_free(directive, 0, ft_strlen(directive),0));
+	i = 0;
+	while (CONVERSION[i] && CONVERSION[i] != str[j])
+		i++;
+	if (CONVERSION[i] && CONVERSION[i] == str[j])
+		put_flag(&CONVERSION[i], &flags);
+	else
+		flags.conversion = '\0';
+	return (flags);
 }
 
 int	convert(const char *str, va_list args, t_buffer *buf)
 {
-	int		pos;
-	char	*conversion;
+	t_flags	flags;
+	int		forward;
 
-	conversion = find_conversion_directive(str + 1);
-	if (!*conversion)
-		return (0);
-	pos = ft_strlen(conversion) - 1;
-	if (*conversion && conversion[pos] == 'c')
-		buffer_add_char(buf, va_arg(args, int));
-	else if (*conversion && conversion[pos] == 's')
-		buffer_add_str(buf, va_arg(args, char *), 0, -1);
-	/* else if (conversion[pos] == 'p') */
-	/* 	/\*Pointer conversion*\/ */
-	/* else if (conversion[pos] == 'd') */
-	/* 	/\*Decimal conversion*\/ */
-	/* else if (conversion[pos] == 'i') */
-	/* 	/\*Integer conversion*\/ */
-	/* else if (conversion[pos] == 'u') */
-	/* 	/\*Unsigned int conversion*\/ */
-	/* else if (conversion[pos] == 'x') */
-	/* 	/\*lowercase hexa conversion*\/ */
-	/* else if (conversion[pos] == 'X') */
-	/* 	/\*Uppercase hexa conversion*\/ */
-	/* else if (conversion[pos] == '%') */
-	/* 	/\*Just put % in buf*\/ */
-	return (pos + 1);
+	flags = find_flags(str + 1);
+	if (flags.conversion == 'c')
+		handle_char(va_arg(args, int), buf);
+	else if (flags.conversion == '%')
+		handle_char('%', buf);
+	else if (flags.conversion == 's')
+		handle_string(va_arg(args, char *), flags, buf);
+	else if (flags.conversion == 'p')
+		handle_pointer(va_arg(args,unsigned long), flags, buf);
+	else if (flags.conversion == 'd')
+		handle_decimal(va_arg(args, int), flags, buf);
+	else if (flags.conversion == 'i')
+		handle_int(va_arg(args, int),flags, buf);
+	else if (flags.conversion == 'u')
+		handle_u_decimal(va_arg(args, unsigned int), flags, buf);
+	else if (flags.conversion == 'x' || flags.conversion == 'X')
+		handle_hexa(va_arg(args,unsigned int), flags, buf);
+		forward = flags.minus + flags.zero + flags.dot + flags.hashtag +
+			flags.space + flags.plus;
+	if (flags.conversion != '\0')
+		forward++;
+	return (forward);
 }
 
-int	str_transform(const char *str, va_list args, t_buffer *buf)
+void	str_transform(const char *str, va_list args, t_buffer *buf)
 {
 	int	i;
 	int	start;
-	int	printed_chars;
 
-	i = -1;
+	i = 0;
 	start = 0;
-	while (str && str[++i])
+	while (str && str[i])
 	{
-
 		while (str[i] && str[i] != CONVERT_SYMBOL)
 			i++;
 		buffer_add_str(buf, str, start, i);
 		if (str[i] && str[i] == CONVERT_SYMBOL)
 			i += convert(&str[i], args, buf);
-		printed_chars = i;
+		start = i;
 	}
-	return (printed_chars);
 }
 
 int	ft_printf(const char *str, ...)
@@ -101,9 +116,9 @@ int	ft_printf(const char *str, ...)
 
 	buf = buffer_new();
 	va_start(args, str);
-	printed_chars = str_transform(str, args, buf);
+	str_transform(str, args, buf);
 	va_end(args);
-	buffer_print_fd(buf, 1);
+	printed_chars = buffer_print_fd(buf, 1);
 	buffer_close(&buf);
 	return (printed_chars);
 }

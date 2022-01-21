@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pointer_to_hexa.c                                  :+:      :+:    :+:   */
+/*   handle_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 20:11:03 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/21 11:20:46 by bzalugas         ###   ########.fr       */
+/*   Created: 2022/01/21 12:30:18 by bzalugas          #+#    #+#             */
+/*   Updated: 2022/01/21 12:38:38 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
-char	*pointer_to_hexa(void *p, int upper_case)
+void	handle_char(int c, t_buffer *buf)
 {
-	char	*pointer;
-	char	*hexa;
+	char	character = c;
 
-	pointer = ft_utoa((unsigned long)p);
-	if (upper_case)
-		hexa = 	ft_base_convert(pointer, "0123456789", "0123456789ABCDEF");
-	else
-		hexa = ft_base_convert(pointer, "0123456789", "0123456789abcdef");
-	/* hexa = ft_strjoin_free("0x", hexa, 0, 1); */
-	return (hexa);
+	buffer_add_char(buf, character);
 }
