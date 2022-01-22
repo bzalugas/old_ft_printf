@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 19:34:53 by bzalugas          #+#    #+#             */
-/*   Updated: 2021/01/24 20:40:04 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/22 16:59:25 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	new->next = *alst;
-	*alst = new;
+	if (!*alst)
+		*alst = new;
+	else
+	{
+		new->next = *alst;
+		*alst = new;
+	}
 }

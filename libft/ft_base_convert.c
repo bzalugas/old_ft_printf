@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 10:54:10 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 20:52:04 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:29:50 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,29 @@ static int	is_base(char *base)
 	if (!base)
 		return (0);
 	while (base[++i])
-		if (!ft_isalnum(base[i]))
+		if ((base [i + 1] && ft_find_char(base[i], (base + i + 1)) != -1) ||
+			base[i] == '-')
 			return (0);
 	return (1);
 }
 
-static int	is_numbase(char **num, char *base)
+static int	is_numbase(char **num, char *base, int *negative)
 {
 	int	i;
-	int	start;
 
-	if (!*num || !base)
+	if (!num || !base)
 		return (0);
-	start = 0;
-	while (*(*num + start) && !ft_isalnum(*(*num + start)))
-		start++;
-	i = start;
+	i = 0;
+	while (*(*num + i) && *(*num + i) == '-')
+		i++;
+	if (i != 0)
+		*negative = 1;
+	*num = *num + i;
+	/* i = -1; */
+	i = -1;
 	while (*(*num + i))
-		if (ft_find_char(*(*num + i++), base) == -1)
+		if (ft_find_char(*(*num + i), base) == -1)
 			return (0);
-	*num = *num + start;
 	return (1);
 }
 
@@ -67,28 +70,36 @@ static char	*lst_to_str(t_list *lst)
 	return (str);
 }
 
-static char	*ite_dec_to_base(int nb, char *base, int len)
+static char	*ite_dec_to_base(unsigned long nb, char *base, int len, int negative)
 {
 	t_list	*lst;
 	char	c;
 
+	lst = NULL;
 	while (nb > 0)
 	{
 		c = base[nb % len];
 		ft_lstadd_front(&lst, ft_lstnew(ft_strdup(&c)));
 		nb /= len;
 	}
+	if (negative)
+	{
+		c = '-';
+		ft_lstadd_front(&lst, ft_lstnew(ft_strdup(&c)));
+	}
 	return (lst_to_str(lst));
 }
 
 char	*ft_base_convert(char *num, char *src_base, char *dst_base)
 {
-	int	nb;
+	unsigned long	nb;
 	int	i;
 	int	src_len;
 	int	dst_len;
+	int	negative;
 
-	if (is_base(src_base) && is_numbase(&num, src_base))
+	negative = 0;
+	if (is_base(src_base) && is_numbase(&num, src_base, &negative))
 	{
 		src_len = ft_strlen(src_base);
 		dst_len = ft_strlen(dst_base);
@@ -97,8 +108,8 @@ char	*ft_base_convert(char *num, char *src_base, char *dst_base)
 		while (num && num[++i])
 			nb = nb * src_len + ft_find_char(num[i], src_base);
 		if (is_base(dst_base))
-			return (ite_dec_to_base(nb, dst_base, dst_len));
-		return (ite_dec_to_base(nb, "0123456789", 10));
+			return (ite_dec_to_base(nb, dst_base, dst_len, negative));
+		return (ite_dec_to_base(nb, "0123456789", 10, negative));
 	}
 	return (NULL);
 }
