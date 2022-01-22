@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:42 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/21 14:07:16 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/22 18:52:13 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -447,17 +447,77 @@ void	emptyStringArgumentTest(CuTest *tc)
 
 void	basicPointerTests(CuTest *tc)
 {
+	void	*pointer;
+	int		expected_return;
+	int		actual_return;
+	char	*expected_print;
+	char	*actual_print;
+	int		stdout_bk;
+	int		pipefds[2];
+	char	buf[MAX_BUF];
+	int		res;
 
+	printf("basicPointerTests\n");
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("affiche mon pointeur : %p\n",pointer);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("affiche mon pointeur : %p\n",pointer);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
 }
 
 void	nullPointerTest(CuTest *tc)
 {
+	int		expected_return;
+	int		actual_return;
+	char	*expected_print;
+	char	*actual_print;
+	int		stdout_bk;
+	int		pipefds[2];
+	char	buf[MAX_BUF];
+	int		res;
 
-}
+	printf("NullPointerTest\n");
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("affiche mon pointeur : %p\n",NULL);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
 
-void	randomPointerTest(CuTest *tc)
-{
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("affiche mon pointeur : %p\n",NULL);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
 
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
 }
 
 void	basicDecimalTests(CuTest *tc)
@@ -473,6 +533,93 @@ void	outOfRangeIntTests(CuTest *tc)
 void	charArgumentForPercentDTest(CuTest *tc)
 {
 
+}
+
+void	basicHexaTests(CuTest *tc)
+{
+	unsigned int	nb;
+	int				expected_return;
+	int				actual_return;
+	char			*expected_print;
+	char			*actual_print;
+	int				stdout_bk;
+	int				pipefds[2];
+	char			buf[MAX_BUF];
+	int				res;
+
+	printf("basicHexaTest\n");
+	nb = 234567998;
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("Mon resultat : %#x\n",nb);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("Mon resultat : %#x\n",nb);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
+
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("Mon resultat : %#X\n",nb);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("Mon resultat : %#X\n",nb);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
+
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("Mon resultat : %X\n",nb);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("Mon resultat : %X\n",nb);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
 }
 
 CuSuite	*ft_printfGetSuite()
@@ -491,9 +638,9 @@ CuSuite	*ft_printfGetSuite()
 	SUITE_ADD_TEST(suite, emptyStringArgumentTest);
 	SUITE_ADD_TEST(suite, basicPointerTests);
 	SUITE_ADD_TEST(suite, nullPointerTest);
-	SUITE_ADD_TEST(suite, randomPointerTest);
 	SUITE_ADD_TEST(suite, basicDecimalTests);
 	SUITE_ADD_TEST(suite, outOfRangeIntTests);
 	SUITE_ADD_TEST(suite, charArgumentForPercentDTest);
+	SUITE_ADD_TEST(suite, basicHexaTests);
 	return (suite);
 }
