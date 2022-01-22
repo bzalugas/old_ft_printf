@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:49:03 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 16:30:17 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/22 18:55:04 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -37,7 +37,7 @@ void	pointer_to_hexaTests(CuTest *tc)
 	res = read(pipefds[0], buff, MAX_BUF);
 	buff[res] = '\0';
 	expected = ft_strdup(buff);
-	actual = pointer_to_hexa(pointer, 0);
+	actual = pointer_to_hexa((unsigned long)pointer, 0);
 
 	CuAssertStrEquals(tc, expected, actual);
 }
