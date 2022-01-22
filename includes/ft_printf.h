@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/21 13:35:02 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/22 19:07:08 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,23 @@ typedef struct s_flags
 	char		conversion;
 }				t_flags;
 
+/*			NEEDED					*/
+
+void	flags_init(t_flags *flags);
+
 /*			CONVERTERS				*/
 
-char	*pointer_to_hexa(void *p, int upper_case);
+char	*pointer_to_hexa(unsigned long p, int upper_case);
 
 /*			HANDLERS				*/
 
 void	handle_char(int c, t_buffer *buf);
-void	handle_string(const char *str, t_flags flags, t_buffer *buf);
-void	handle_pointer(unsigned long p, t_flags flags, t_buffer *buf);
-void	handle_decimal(int n, t_flags flags, t_buffer *buf);
-void	handle_int(int n, t_flags flags, t_buffer *buf);
-void	handle_u_decimal(unsigned int n, t_flags flags, t_buffer *buf);
-void	handle_hexa(unsigned int n, t_flags flags, t_buffer *buf);
+void	handle_string(const char *str, t_flags *flags, t_buffer *buf);
+void	handle_pointer(unsigned long p, t_buffer *buf);
+void	handle_decimal(int n, t_flags *flags, t_buffer *buf);
+void	handle_int(int n, t_flags *flags, t_buffer *buf);
+void	handle_u_decimal(unsigned int n, t_flags *flags, t_buffer *buf);
+void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf);
 
 /*			MAIN FUNCTIONS			*/
 
