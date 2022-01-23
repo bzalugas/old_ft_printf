@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 12:46:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 18:52:59 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/22 19:31:36 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ void	handle_string(const char *str, t_flags *flags, t_buffer *buf)
 	length = -1;
 	if (flags->dot)
 		length = flags->precision;
+	if (!str)
+		str = "(null)";
 	buffer_add_str(buf, str, 0, length);
 }
