@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:42 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 18:52:13 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/22 19:38:54 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -498,7 +498,7 @@ void	nullPointerTest(CuTest *tc)
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("affiche mon pointeur : %p\n",NULL);
+	expected_return = printf("affiche mon pointeur null : %p\n",NULL);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
@@ -508,7 +508,7 @@ void	nullPointerTest(CuTest *tc)
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("affiche mon pointeur : %p\n",NULL);
+	actual_return = ft_printf("affiche mon pointeur null : %p\n",NULL);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
