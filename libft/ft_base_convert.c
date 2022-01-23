@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 10:54:10 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 17:29:50 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/23 22:22:51 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static char	*lst_to_str(t_list *lst)
 		str[i++] = *content;
 		tmp = tmp->next;
 	}
+	str[i] = '\0';
 	del = &ft_lstdelcontent;
 	ft_lstclear(&lst, del);
 	return (str);
@@ -76,6 +77,11 @@ static char	*ite_dec_to_base(unsigned long nb, char *base, int len, int negative
 	char	c;
 
 	lst = NULL;
+	if (nb == 0)
+	{
+		c = base[0];
+		ft_lstadd_front(&lst, ft_lstnew(ft_strdup(&c)));
+	}
 	while (nb > 0)
 	{
 		c = base[nb % len];
