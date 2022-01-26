@@ -6,17 +6,23 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 14:13:31 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:20:28 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
-void	put_flag(char *str, t_flags *flags)
+unsigned	put_flag(const char *str, t_flags *flags)
 {
+	unsigned	forward;
+
+	forward = 0;
 	if (str[0] == '-')
+	{
 		flags->minus = 1;
+		flags->precision = ft_atoi(str + 1);
+	}
 	else if (str[0] == '0')
 		flags->zero = 1;
 	else if (str[0] == '.')
@@ -32,6 +38,8 @@ void	put_flag(char *str, t_flags *flags)
 		flags->plus = 1;
 	else
 		flags->conversion = str[0];
+	forward = ft_get_pow(ft_abs(flags->precision), 1);
+	return (forward + 1);
 }
 
 t_flags	find_flags(const char *str)
@@ -47,9 +55,9 @@ t_flags	find_flags(const char *str)
 	{
 		if (str[j] == FLAGS[i])
 		{
-			put_flag(&FLAGS[i], &flags);
+			j += put_flag(&str[j], &flags);
 			i = -1;
-			j++;
+			/* j++; */
 		}
 	}
 	i = 0;
@@ -74,8 +82,8 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 		handle_string(va_arg(args, char *), &flags, buf);
 	else if (flags.conversion == 'p')
 		handle_pointer(va_arg(args,unsigned long), buf);
-	/* else if (flags.conversion == 'd') */
-	/* 	handle_decimal(va_arg(args, int), flags, buf); */
+	else if (flags.conversion == 'd')
+		handle_decimal(va_arg(args, int), &flags, buf);
 	/* else if (flags.conversion == 'i') */
 	/* 	handle_int(va_arg(args, int),flags, buf); */
 	/* else if (flags.conversion == 'u') */
@@ -83,7 +91,7 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 	else if (flags.conversion == 'x' || flags.conversion == 'X')
 		handle_hexa(va_arg(args,unsigned int), &flags, buf);
 		forward = flags.minus + flags.zero + flags.dot + flags.hashtag +
-			flags.space + flags.plus;
+			flags.space + flags.plus + ft_get_pow(flags.precision, 1);
 	if (flags.conversion != '\0')
 		forward++;
 	return (forward + 1);

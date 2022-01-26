@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 19:07:08 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:41:24 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf);
 
 /*			MAIN FUNCTIONS			*/
 
-void	put_flag(char *str, t_flags *flags);
+unsigned	put_flag(const char *str, t_flags *flags);
 t_flags	find_flags(const char *str);
 int		convert(const char *str, va_list args, t_buffer *buf);
 void	str_transform(const char *str, va_list args, t_buffer *buf);
