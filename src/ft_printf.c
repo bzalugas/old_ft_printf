@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 16:20:28 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 20:02:10 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_flags	find_flags(const char *str)
 		{
 			j += put_flag(&str[j], &flags);
 			i = -1;
-			/* j++; */
 		}
 	}
 	i = 0;
@@ -82,12 +81,10 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 		handle_string(va_arg(args, char *), &flags, buf);
 	else if (flags.conversion == 'p')
 		handle_pointer(va_arg(args,unsigned long), buf);
-	else if (flags.conversion == 'd')
+	else if (flags.conversion == 'd' || flags.conversion == 'i')
 		handle_decimal(va_arg(args, int), &flags, buf);
-	/* else if (flags.conversion == 'i') */
-	/* 	handle_int(va_arg(args, int),flags, buf); */
-	/* else if (flags.conversion == 'u') */
-	/* 	handle_u_decimal(va_arg(args, unsigned int), flags, buf); */
+	else if (flags.conversion == 'u')
+		handle_unsigned(va_arg(args, unsigned int), &flags, buf);
 	else if (flags.conversion == 'x' || flags.conversion == 'X')
 		handle_hexa(va_arg(args,unsigned int), &flags, buf);
 		forward = flags.minus + flags.zero + flags.dot + flags.hashtag +

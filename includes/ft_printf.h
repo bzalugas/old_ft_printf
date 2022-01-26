@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 15:41:24 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 20:06:22 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	handle_char(int c, t_buffer *buf);
 void	handle_string(const char *str, t_flags *flags, t_buffer *buf);
 void	handle_pointer(unsigned long p, t_buffer *buf);
 void	handle_decimal(int n, t_flags *flags, t_buffer *buf);
-void	handle_int(int n, t_flags *flags, t_buffer *buf);
-void	handle_u_decimal(unsigned int n, t_flags *flags, t_buffer *buf);
+void	handle_unsigned(unsigned int n, t_flags *flags, t_buffer *buf);
 void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf);
 
 /*			MAIN FUNCTIONS			*/

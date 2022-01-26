@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/26 16:16:32 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/26 20:04:45 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@
 
 SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c flags_init.c \
 				pointer_to_hexa.c handle_char.c handle_string.c handle_pointer.c \
-				handle_hexa.c handle_decimal.c
+				handle_hexa.c handle_decimal.c handle_unsigned.c
 
 SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 
@@ -33,7 +33,8 @@ DIR_LIBFT	=	libft
 DIR_TESTS	=	tests
 
 SRC_TESTS	=	CuTest.c AllTests.c ft_printfTest.c bufferTests.c intermediaryTests.c\
-				charTests.c stringTests.c pointerTests.c hexaTests.c decimalTests.c
+				charTests.c stringTests.c pointerTests.c hexaTests.c decimalTests.c\
+				intTests.c unsignedTests.c
 
 SRCS_TESTS	=	$(addprefix $(DIR_TESTS)/,$(SRC_TESTS))
 
