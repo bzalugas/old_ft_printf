@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:16:15 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 16:19:12 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:29:03 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int	ft_get_pow(unsigned long nb, int pow)
 		return (0);
 	if (nb < 10)
 		return (pow);
-	return (ft_pow(nb / 10, pow + 1));
+	return (ft_get_pow(nb / 10, pow + 1));
 }
