@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 17:43:48 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:15:36 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,28 @@
 #include "CuTest.h"
 #include <fcntl.h>
 
-CuSuite	*ft_printfGetSuite();
 CuSuite *bufferGetSuite();
 CuSuite *intermediaryGetSuite();
+CuSuite *charTestsGetSuite();
+CuSuite *stringTestsGetSuite();
+CuSuite *pointerTestsGetSuite();
+CuSuite *hexaTestsGetSuite();
+CuSuite *decimalTestsGetSuite();
+CuSuite	*ft_printfGetSuite();
 
 void	RunAllTests()
 {
 	CuString	*output = CuStringNew();
 	CuSuite		*suite = CuSuiteNew();
 
-	CuSuiteAddSuite(suite, ft_printfGetSuite());
 	CuSuiteAddSuite(suite, bufferGetSuite());
 	CuSuiteAddSuite(suite, intermediaryGetSuite());
+	CuSuiteAddSuite(suite, charTestsGetSuite());
+	CuSuiteAddSuite(suite, stringTestsGetSuite());
+	CuSuiteAddSuite(suite, pointerTestsGetSuite());
+	CuSuiteAddSuite(suite, hexaTestsGetSuite());
+	CuSuiteAddSuite(suite, decimalTestsGetSuite());
+	CuSuiteAddSuite(suite, ft_printfGetSuite());
 
 	CuSuiteRun(suite);
 	CuSuiteSummary(suite, output);
