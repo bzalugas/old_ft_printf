@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stringTests.c                                      :+:      :+:    :+:   */
+/*   unsignedTests.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 16:06:04 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 19:50:15 by bzalugas         ###   ########.fr       */
+/*   Created: 2022/01/26 19:52:11 by bzalugas          #+#    #+#             */
+/*   Updated: 2022/01/26 19:59:19 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #define MAX_BUF 100001
 
-void	basicStringTests(CuTest *tc)
+void	basicUnsignedTests(CuTest *tc)
 {
 	int		expected_return;
 	int		actual_return;
@@ -26,11 +26,11 @@ void	basicStringTests(CuTest *tc)
 	char	buf[MAX_BUF];
 	int		res;
 
-	printf("basicStringTests\n");
+	printf("basicUnsignedTests\n");
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Voici ma string a afficher : %s\n", "Salut tout le monde !");
+	expected_return = printf("Mon unsigned : %u", 234567);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
@@ -40,7 +40,31 @@ void	basicStringTests(CuTest *tc)
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Voici ma string a afficher : %s\n", "Salut tout le monde !");
+	actual_return = ft_printf("Mon unsigned : %u", 234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
+
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("Mon unsigned : %u", 0x234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("Mon unsigned : %u", 0x234567);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
@@ -52,7 +76,7 @@ void	basicStringTests(CuTest *tc)
 	CuAssertIntEquals(tc, expected_return, actual_return);
 }
 
-void	multipleSTest(CuTest *tc)
+void	negativeArgumentTest(CuTest *tc)
 {
 	int		expected_return;
 	int		actual_return;
@@ -63,12 +87,11 @@ void	multipleSTest(CuTest *tc)
 	char	buf[MAX_BUF];
 	int		res;
 
-	printf("multipleSTest\n");
+	printf("negativeArgumentTest\n");
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Voici mes strings a afficher : %s, %s, %s\n", "Salut tout le monde !",
-		"Je suis Bastien", "Il fait pas beau");
+	expected_return = printf("Mon unsigned : %u", -234567);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
@@ -78,8 +101,7 @@ void	multipleSTest(CuTest *tc)
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Voici mes strings a afficher : %s, %s, %s\n", "Salut tout le monde !",
-		"Je suis Bastien", "Il fait pas beau");
+	actual_return = ft_printf("Mon unsigned : %u", -234567);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
@@ -91,7 +113,7 @@ void	multipleSTest(CuTest *tc)
 	CuAssertIntEquals(tc, expected_return, actual_return);
 }
 
-void	nullStringArgumentTest(CuTest *tc)
+void	unsignedFlagsTests(CuTest *tc)
 {
 	int		expected_return;
 	int		actual_return;
@@ -102,11 +124,11 @@ void	nullStringArgumentTest(CuTest *tc)
 	char	buf[MAX_BUF];
 	int		res;
 
-	printf("nullStringArgumentTest\n");
+	printf("unsignedFlagsTests\n");
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Voici ma string a afficher : %s\n", (char *)NULL);
+	expected_return = printf("Mon unsigned : %u", 234567);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
@@ -116,7 +138,79 @@ void	nullStringArgumentTest(CuTest *tc)
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Voici ma string a afficher : %s\n", (char *)NULL);
+	actual_return = ft_printf("Mon unsigned : %u", 234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
+
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("Mon unsigned : %0u", 234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("Mon unsigned : %0u", 234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
+
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("Mon unsigned : %.9u", 234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("Mon unsigned : %.9u", 234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	actual_print = ft_strdup(buf);
+
+	CuAssertStrEquals(tc, expected_print, actual_print);
+	CuAssertIntEquals(tc, expected_return, actual_return);
+
+	stdout_bk = dup(fileno(stdout));
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	expected_return = printf("Mon unsigned : %-3u", 234567);
+	fflush(stdout);
+	close(pipefds[1]);
+	dup2(stdout_bk, fileno(stdout));
+	res = read(pipefds[0], buf, MAX_BUF);
+	buf[res] = '\0';
+	expected_print = ft_strdup(buf);
+
+	pipe(pipefds);
+	dup2(pipefds[1], fileno(stdout));
+	actual_return = ft_printf("Mon unsigned : %-3u", 234567);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
@@ -128,86 +222,11 @@ void	nullStringArgumentTest(CuTest *tc)
 	CuAssertIntEquals(tc, expected_return, actual_return);
 }
 
-void	emptyStringArgumentTest(CuTest *tc)
-{
-	int		expected_return;
-	int		actual_return;
-	char	*expected_print;
-	char	*actual_print;
-	int		stdout_bk;
-	int		pipefds[2];
-	char	buf[MAX_BUF];
-	int		res;
-
-	printf("emptyStringArgumentTest\n");
-	stdout_bk = dup(fileno(stdout));
-	pipe(pipefds);
-	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Voici ma string a afficher : %s\n","");
-	fflush(stdout);
-	close(pipefds[1]);
-	dup2(stdout_bk, fileno(stdout));
-	res = read(pipefds[0], buf, MAX_BUF);
-	buf[res] = '\0';
-	expected_print = ft_strdup(buf);
-
-	pipe(pipefds);
-	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Voici ma string a afficher : %s\n","");
-	fflush(stdout);
-	close(pipefds[1]);
-	dup2(stdout_bk, fileno(stdout));
-	res = read(pipefds[0], buf, MAX_BUF);
-	buf[res] = '\0';
-	actual_print = ft_strdup(buf);
-
-	CuAssertStrEquals(tc, expected_print, actual_print);
-	CuAssertIntEquals(tc, expected_return, actual_return);
-}
-
-void	stringFlagsTests(CuTest *tc)
-{
-	int		expected_return;
-	int		actual_return;
-	char	*expected_print;
-	char	*actual_print;
-	int		stdout_bk;
-	int		pipefds[2];
-	char	buf[MAX_BUF];
-	int		res;
-
-	printf("stringFlagsTests\n");
-	stdout_bk = dup(fileno(stdout));
-	pipe(pipefds);
-	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Voici ma string a afficher : %.5s\n","Bastien");
-	fflush(stdout);
-	close(pipefds[1]);
-	dup2(stdout_bk, fileno(stdout));
-	res = read(pipefds[0], buf, MAX_BUF);
-	buf[res] = '\0';
-	expected_print = ft_strdup(buf);
-
-	pipe(pipefds);
-	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Voici ma string a afficher : %.5s\n","Bastien");
-	fflush(stdout);
-	close(pipefds[1]);
-	dup2(stdout_bk, fileno(stdout));
-	res = read(pipefds[0], buf, MAX_BUF);
-	buf[res] = '\0';
-	actual_print = ft_strdup(buf);
-
-	CuAssertStrEquals(tc, expected_print, actual_print);
-	CuAssertIntEquals(tc, expected_return, actual_return);
-}
-
-CuSuite	*stringTestsGetSuite()
+CuSuite	*unsignedTestsGetSuite()
 {
 	CuSuite	*suite = CuSuiteNew();
-	SUITE_ADD_TEST(suite, basicStringTests);
-	SUITE_ADD_TEST(suite, multipleSTest);
-	SUITE_ADD_TEST(suite, nullStringArgumentTest);
-	SUITE_ADD_TEST(suite, emptyStringArgumentTest);
+	SUITE_ADD_TEST(suite, basicUnsignedTests);
+	SUITE_ADD_TEST(suite, negativeArgumentTest);
+	SUITE_ADD_TEST(suite, unsignedFlagsTests);
 	return (suite);
 }

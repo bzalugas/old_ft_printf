@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 16:15:36 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 20:00:00 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ CuSuite *stringTestsGetSuite();
 CuSuite *pointerTestsGetSuite();
 CuSuite *hexaTestsGetSuite();
 CuSuite *decimalTestsGetSuite();
+CuSuite	*intTestsGetSuite();
+CuSuite	*unsignedTestsGetSuite();
 CuSuite	*ft_printfGetSuite();
 
 void	RunAllTests()
@@ -36,6 +38,8 @@ void	RunAllTests()
 	CuSuiteAddSuite(suite, pointerTestsGetSuite());
 	CuSuiteAddSuite(suite, hexaTestsGetSuite());
 	CuSuiteAddSuite(suite, decimalTestsGetSuite());
+	CuSuiteAddSuite(suite, intTestsGetSuite());
+	CuSuiteAddSuite(suite, unsignedTestsGetSuite());
 	CuSuiteAddSuite(suite, ft_printfGetSuite());
 
 	CuSuiteRun(suite);
