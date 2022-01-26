@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/22 19:26:17 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/26 14:33:41 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -93,11 +93,13 @@ libft:
 
 #Rule for every sources of the project
 
-$(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c libft
+$(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c libft createDirOut
+					@$(CC) $(CFLAGS) -o $@ -c $<
+					@echo "$(GREEN)$< compiled$(END)"
+
+createDirOut:
 					@mkdir -p $(DIR_OUT)
 					@echo "$(GREEN)$(DIR_OUT) folder created$(END)"
-					@$(CC) $(CFLAGS) -o $@ -c $<
-					@echo "$(GREEN)All sources compiled$(END)"
 
 #Rule for the tester
 # $(TESTER_NAME):		tester.c
@@ -122,10 +124,8 @@ fclean:				clean
 					@make -C $(DIR_LIBFT) fclean
 					@echo "$(GREEN)fclean libft$(END)"
 					@$(RM) $(NAME)
-					@$(RM) $(LIBFT_NAME)
 					@$(RM) $(TESTER_NAME)
 					@echo "$(GREEN)$(NAME) deleted$(END)"
-					@echo "$(GREEN)$(LIBFT_NAME) deleted$(END)"
 					@echo "$(GREEN)$(TESTER_NAME) deleted$(END)"
 
 re:					fclean all
