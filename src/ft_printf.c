@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 19:25:32 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 14:13:31 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,7 @@ void	str_transform(const char *str, va_list args, t_buffer *buf)
 				start = i;
 			}
 			else
-				start = i + 1;
-			if (str[i])
-				i++;
+				start = ++i;
 		}
 		else
 			i++;
