@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 01:12:34 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/20 20:40:18 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:20:11 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,9 @@ char				*ft_base_convert(char *num, char *src_base, char *dst_base);
 void				ft_lstdelcontent(void *content);
 
 char				*ft_utoa(unsigned long n);
+
+int					ft_get_pow(unsigned long nb, int pow);
+
+unsigned long		ft_abs(int nb);
 
 #endif
