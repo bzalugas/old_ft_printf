@@ -6,11 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:45:56 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 20:46:35 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:02:14 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 unsigned	put_flag(const char *str, t_flags *flags)
 {

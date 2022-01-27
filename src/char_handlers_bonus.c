@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   char_handlers.c                                    :+:      :+:    :+:   */
+/*   char_handlers_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:06:11 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 11:07:01 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:02:02 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 void	handle_char(int c, t_buffer *buf)
 {

@@ -6,18 +6,25 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/27 12:28:23 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/27 13:05:10 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ##### Sources ######
 
-SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c flags_init.c \
-				char_handlers.c num_handlers.c
+SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c char_handlers.c\
+				num_handlers.c
 
 SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 
 OBJS		=	$(addprefix $(DIR_OUT)/,$(SRC:.c=.o))
+
+BONUS_SRC	=	ft_printf_bonus.c buffer_char.c buffer.c buffer_add.c\
+				char_handlers_bonus.c num_handlers_bonus.c flags.c
+
+BONUS_SRCS	=	$(addprefix $(DIR_SRCS)/,$(BONUS_SRC))
+
+BONUS_OBJS	=	$(addprefix $(DIR_OUT)/,$(BONUS_SRC:.c=.o))
 
 DIR_SRCS	=	src
 
@@ -79,6 +86,10 @@ $(NAME):			$(OBJS)
 					@$(LIB) $(NAME) $(OBJS)
 					@echo "$(GREEN)$(NAME) built$(END)"
 
+bonus:				$(BONUS_OBJS)
+					@$(LIB) $(NAME) $(BONUS_OBJS)
+					@echo "$(GREEN)$(NAME) bonuses built$(END)"
+
 # test:				$(NAME) $(O_TESTER)
 # 					@echo
 # 					./$(TESTER_NAME)
@@ -113,7 +124,7 @@ $(TESTER_NAME):		$(SRCS_TESTS)
 
 ifeq ($(OUT),true)
 clean:
-					@$(RM) $(OBJS)
+					@$(RM) $(OBJS) $(BONUS_OBJS)
 					@$(RMDIR) $(DIR_OUT)
 					@echo "$(GREEN)Objects and objects folder deleted$(END)"
 else
@@ -131,4 +142,4 @@ fclean:				clean
 
 re:					fclean all
 
-.PHONY:				libft
+.PHONY:				libft bonus

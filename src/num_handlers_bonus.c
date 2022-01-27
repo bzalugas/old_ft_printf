@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_handlers.c                                     :+:      :+:    :+:   */
+/*   num_handlers_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 12:20:10 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:02:32 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 char	*pointer_to_hexa(unsigned long p, int upper_case)
 {

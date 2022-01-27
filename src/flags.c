@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_init.c                                       :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:04:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 19:06:23 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:02:54 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/ft_printf.h"
+
+#include "../includes/ft_printf_bonus.h"
 
 void	flags_init(t_flags *flags)
 {
