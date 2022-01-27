@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:19:15 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 15:25:09 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:18:28 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 unsigned long	ft_abs(int nb)
 {
 	if (nb == -2147483648)
-		return (0);
+		return (2147483648);
 	if (nb < 0)
 		return (-nb);
 	return (nb);
