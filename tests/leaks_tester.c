@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 13:33:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 17:51:49 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:18:23 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 t_list *g_liste = NULL;
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_addrnew(void *content)
 {
 	t_list	*new;
 
@@ -28,71 +28,71 @@ t_list	*ft_lstnew(void *content)
 	return (new);
 }
 
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (lst)
-		while (lst->next)
-			lst = lst->next;
-	return (lst);
-}
+/* t_list	*ft_lstlast(t_list *lst) */
+/* { */
+/* 	if (lst) */
+/* 		while (lst->next) */
+/* 			lst = lst->next; */
+/* 	return (lst); */
+/* } */
 
-void	ft_lstadd_back(t_list **alst, t_list *new)
-{
-	t_list	*tmp;
+/* void	ft_lstadd_back(t_list **alst, t_list *new) */
+/* { */
+/* 	t_list	*tmp; */
 
-	if (*alst)
-	{
-		tmp = ft_lstlast(*alst);
-		tmp->next = new;
-	}
-	else
-		*alst = new;
-}
+/* 	if (*alst) */
+/* 	{ */
+/* 		tmp = ft_lstlast(*alst); */
+/* 		tmp->next = new; */
+/* 	} */
+/* 	else */
+/* 		*alst = new; */
+/* } */
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	if (del)
-	{
-		(*del)(lst->content);
-		free(lst);
-	}
-}
+/* void	ft_lstdelone(t_list *lst, void (*del)(void *)) */
+/* { */
+/* 	if (del) */
+/* 	{ */
+/* 		(*del)(lst->content); */
+/* 		free(lst); */
+/* 	} */
+/* } */
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*tmp;
+/* void	ft_lstclear(t_list **lst, void (*del)(void *)) */
+/* { */
+/* 	t_list	*tmp; */
 
-	if (del || *lst)
-	{
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			ft_lstdelone(*lst, del);
-			*lst = tmp;
-		}
-	}
-}
+/* 	if (del || *lst) */
+/* 	{ */
+/* 		while (*lst) */
+/* 		{ */
+/* 			tmp = (*lst)->next; */
+/* 			ft_lstdelone(*lst, del); */
+/* 			*lst = tmp; */
+/* 		} */
+/* 	} */
+/* } */
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	if (f)
-		while (lst)
-		{
-			(*f)(lst->content);
-			lst = lst->next;
-		}
-}
+/* void	ft_lstiter(t_list *lst, void (*f)(void *)) */
+/* { */
+/* 	if (f) */
+/* 		while (lst) */
+/* 		{ */
+/* 			(*f)(lst->content); */
+/* 			lst = lst->next; */
+/* 		} */
+/* } */
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
-{
-	size_t i;
+/* int	ft_memcmp(const void *s1, const void *s2, size_t n) */
+/* { */
+/* 	size_t i; */
 
-	i = -1;
-	while (++i < n)
-		if (*(unsigned char *)(s1 + i) != *(unsigned char *)(s2 + i))
-			return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
-	return (0);
-}
+/* 	i = -1; */
+/* 	while (++i < n) */
+/* 		if (*(unsigned char *)(s1 + i) != *(unsigned char *)(s2 + i)) */
+/* 			return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i)); */
+/* 	return (0); */
+/* } */
 
 int     check_delete(t_list *lst, void *p)
 {
@@ -131,7 +131,7 @@ void *my_malloc(size_t size, const char *file, int line, const char *function)
 	if (!p)
 		return NULL;
 	printf("Malloc : %s, line %d, function %s : %p[%lu]\n", file, line, function, p, size);
-	t_list *el = ft_lstnew(p);
+	t_list *el = ft_addrnew(p);
 	ft_lstadd_back(&g_liste, el);
 	nb_malloc++;
 	return p;
@@ -157,12 +157,12 @@ void delete(void *content)
 {
     content = NULL;
 }
+
 int main(void)
 {
-	t_buffer *buf = buffer_new();
-	buffer_add_str(buf, "BASTIEN\n", 0, -1);
-	buffer_print_fd(buf, 1);
-	buffer_close(&buf);
+	void	*p = malloc(sizeof(void *));
+	ft_printf("pointeur : %p\n", p);
+	free(p);
 
     printf("nb malloc : %d\n", nb_malloc);
     printf("nb free : %d\n", nb_free);
