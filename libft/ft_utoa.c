@@ -6,17 +6,22 @@
 /*   By: bzalugas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 19:21:04 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/22 10:43:58 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:30:14 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_power(unsigned long nb, int pow)
+static char	*zero(void)
 {
-	if (nb > 9)
-		return (ft_power(nb / 10, pow + 1));
-	return (pow);
+	char	*s;
+
+	s = malloc(sizeof(char) * 2);
+	if (!s)
+		return (NULL);
+	s[0] = '0';
+	s[1] = '\0';
+	return (s);
 }
 
 char	*ft_utoa(unsigned long n)
@@ -24,8 +29,10 @@ char	*ft_utoa(unsigned long n)
 	unsigned long	pow;
 	char			*s;
 	size_t			i;
-	
-	pow = ft_power(n, 1);
+
+	if (n == 0)
+		return (zero());
+	pow = ft_get_pow(n, 1);
 	s = malloc(sizeof(char) * pow + 1);
 	if (!s)
 		return (NULL);
