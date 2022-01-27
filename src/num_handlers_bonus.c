@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 13:02:32 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:35:42 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ char	*pointer_to_hexa(unsigned long p, int upper_case)
 	char	*hexa;
 
 	pointer = ft_utoa(p);
-	if (!*pointer)
-		pointer = "0";
 	hexa = NULL;
 	if (upper_case)
 		hexa = 	ft_base_convert(pointer, "0123456789", "0123456789ABCDEF");
 	else
 		hexa = ft_base_convert(pointer, "0123456789", "0123456789abcdef");
+	free(pointer);
 	return (hexa);
 }
 
 void	handle_unsigned(unsigned n, t_flags *flags, t_buffer *buf)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
+	char	*num;
 
 	i = -1;
 	len = ft_get_pow(n, 1);
@@ -40,13 +40,16 @@ void	handle_unsigned(unsigned n, t_flags *flags, t_buffer *buf)
 	if (flags->dot)
 		while (++i < flags->precision - len)
 			buffer_add_char(buf, '0');
-	buffer_add_str(buf, ft_utoa(n), 0, -1);
+	num = ft_utoa(n);
+	buffer_add_str(buf, num, 0, -1);
+	free(num);
 }
 
 void	handle_decimal(int n, t_flags *flags, t_buffer *buf)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
+	char	*num;
 
 	i = -1;
 	len = ft_get_pow(n, 1);
@@ -57,9 +60,9 @@ void	handle_decimal(int n, t_flags *flags, t_buffer *buf)
 	else if (flags->dot)
 		while (++i < (flags->precision - len))
 			buffer_add_char(buf, '0');
-	/* else if (flags->space) */
-	/* 	buffer_add_char(buf, ' '); */
-	buffer_add_str(buf, ft_itoa(n), 0, -1);
+	num = ft_itoa(n);
+	buffer_add_str(buf, num, 0, -1);
+	free(num);
 }
 
 void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf)
@@ -84,15 +87,16 @@ void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf)
 	if (hexa && flags->hashtag)
 		buffer_add_str(buf, pre, 0, 2);
 	buffer_add_str(buf, hexa, 0, -1);
+	free(hexa);
 }
 
 void	handle_pointer(unsigned long p, t_buffer *buf)
 {
 	char	*hexa;
 
-	hexa = NULL;
 	hexa = pointer_to_hexa(p, 0);
 	if (hexa)
 		buffer_add_str(buf, "0x", 0, 2);
 	buffer_add_str(buf, hexa, 0, -1);
+	free(hexa);
 }
