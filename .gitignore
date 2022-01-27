@@ -107,3 +107,7 @@ flycheck_*.el
 .idea
 *.log
 tmp/
+
+# testers
+ft_printf_tester
+printfTester
