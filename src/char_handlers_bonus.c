@@ -6,17 +6,23 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:06:11 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 13:02:02 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:53:26 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
 
-void	handle_char(int c, t_buffer *buf)
+void	handle_char(int c, t_flags *flags, t_buffer *buf)
 {
 	char	character = c;
+	int		i;
 
 	buffer_add_char(buf, character);
+	i = flags->precision;
+	if (flags->minus && flags->precision > 1)
+		while (--i > 0)
+			buffer_add_char(buf, ' ');
+
 }
 
 void	handle_string(const char *str, t_flags *flags, t_buffer *buf)

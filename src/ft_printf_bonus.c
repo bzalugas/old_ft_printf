@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:45:56 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 13:02:14 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:48:17 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 
 	flags = find_flags(str + 1);
 	if (flags.conversion == 'c')
-		handle_char(va_arg(args, int), buf);
+		handle_char(va_arg(args, int), &flags, buf);
 	else if (flags.conversion == '%')
-		handle_char('%', buf);
+		handle_char('%', &flags, buf);
 	else if (flags.conversion == 's')
 		handle_string(va_arg(args, char *), &flags, buf);
 	else if (flags.conversion == 'p')
