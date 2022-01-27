@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/27 13:05:10 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/27 17:33:22 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -86,7 +86,7 @@ $(NAME):			$(OBJS)
 					@$(LIB) $(NAME) $(OBJS)
 					@echo "$(GREEN)$(NAME) built$(END)"
 
-bonus:				$(BONUS_OBJS)
+bonus:				fclean $(BONUS_OBJS)
 					@$(LIB) $(NAME) $(BONUS_OBJS)
 					@echo "$(GREEN)$(NAME) bonuses built$(END)"
 
@@ -95,6 +95,10 @@ bonus:				$(BONUS_OBJS)
 # 					./$(TESTER_NAME)
 
 test:				$(NAME) $(TESTER_NAME)
+					@echo
+					./$(TESTER_NAME)
+
+testBonus:			bonus $(TESTER_NAME)
 					@echo
 					./$(TESTER_NAME)
 
