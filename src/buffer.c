@@ -6,11 +6,10 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:49:40 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/21 12:18:16 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 17:28:09 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
-/* #include "../includes/leaks_tester.h" */
 
 t_buffer	*buffer_new(void)
 {
@@ -51,7 +50,7 @@ size_t	buffer_print_fd(t_buffer *buf, int fd)
 		next_char = next_char->next;
 	}
 	str[i] = '\0';
-	ft_putstr_fd(str, fd);
+	write(fd, str, buffer_size(buf));
 	free(str);
 	return (buffer_size(buf));
 }
