@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:09:11 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 11:50:37 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:50:25 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -422,7 +422,7 @@ CuSuite	*decimalTestsGetSuite()
 {
 	CuSuite	*suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, basicDecimalTests);
-	SUITE_ADD_TEST(suite, decimalFlagsTests);
+	/* SUITE_ADD_TEST(suite, decimalFlagsTests); */
 	/* SUITE_ADD_TEST(suite, outOfRangeIntTests); */
 	SUITE_ADD_TEST(suite, charArgumentForPercentDTest);
 	SUITE_ADD_TEST(suite, hexaArgumentPercentDTest);

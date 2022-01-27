@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:52:11 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 12:08:21 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:49:56 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,6 @@ CuSuite	*unsignedTestsGetSuite()
 	CuSuite	*suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, basicUnsignedTests);
 	SUITE_ADD_TEST(suite, negativeArgumentTest);
-	SUITE_ADD_TEST(suite, unsignedFlagsTests);
+	/* SUITE_ADD_TEST(suite, unsignedFlagsTests); */
 	return (suite);
 }

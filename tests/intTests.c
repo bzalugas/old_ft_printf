@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 19:41:56 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 11:53:04 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:50:10 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,7 +356,7 @@ CuSuite	*intTestsGetSuite()
 {
 	CuSuite	*suite = CuSuiteNew();
 	SUITE_ADD_TEST(suite, basicIntTests);
-	SUITE_ADD_TEST(suite, intFlagsTests);
+	/* SUITE_ADD_TEST(suite, intFlagsTests); */
 	SUITE_ADD_TEST(suite, charArgumentForPercentITest);
 	SUITE_ADD_TEST(suite, hexaArgumentPercentITest);
 	return (suite);
