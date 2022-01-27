@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 17:46:15 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/21 13:42:35 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:45:32 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	basicTest(CuTest *tc)
 	res = read(pipefds[0], buff, MAX_BUF);
 	buff[res] = '\0';
 	actual_print = ft_strdup(buff);
+	close(pipefds[0]);
 
 	buffer_close(&buf);
 	CuAssertStrEquals(tc, expected_print, actual_print);
@@ -72,6 +73,7 @@ void	bigStringTest(CuTest *tc)
 	res = read(pipefds[0], buff, MAX_BUF);
 	buff[res] = '\0';
 	actual_print = ft_strdup(buff);
+	close(pipefds[0]);
 
 	buffer_close(&buf);
 	CuAssertStrEquals(tc, input, actual_print);
@@ -86,7 +88,6 @@ void	emptyTest(CuTest *tc)
 	int			pipefds[2];
 	char		buff[MAX_BUF];
 	int			res;
-	char		c;
 
 	buf = buffer_new();
 	expected_print = "";
@@ -101,6 +102,7 @@ void	emptyTest(CuTest *tc)
 	res = read(pipefds[0], buff, MAX_BUF);
 	buff[res] = '\0';
 	actual_print = ft_strdup(buff);
+	close(pipefds[0]);
 
 	buffer_close(&buf);
 	CuAssertStrEquals(tc, expected_print, actual_print);
@@ -132,6 +134,7 @@ void	substrTest(CuTest *tc)
 	res = read(pipefds[0], buff, MAX_BUF);
 	buff[res] = '\0';
 	actual_print = ft_strdup(buff);
+	close(pipefds[0]);
 
 	buffer_close(&buf);
 	CuAssertStrEquals(tc, expected_print, actual_print);
@@ -163,6 +166,7 @@ void	multipleBufStringsTest(CuTest *tc)
 	res = read(pipefds[0], buff, MAX_BUF);
 	buff[res] = '\0';
 	actual_print = ft_strdup(buff);
+	close(pipefds[0]);
 
 	buffer_close(&buf);
 	CuAssertStrEquals(tc, expected_print, actual_print);

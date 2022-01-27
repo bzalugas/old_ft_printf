@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:03:15 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 16:05:50 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:47:35 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	basicCharTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -47,6 +48,7 @@ void	basicCharTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
@@ -61,6 +63,7 @@ void	basicCharTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -71,6 +74,7 @@ void	basicCharTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
@@ -85,6 +89,7 @@ void	basicCharTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -95,6 +100,7 @@ void	basicCharTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
@@ -122,6 +128,7 @@ void	multipleCharsTest(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -132,6 +139,7 @@ void	multipleCharsTest(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);

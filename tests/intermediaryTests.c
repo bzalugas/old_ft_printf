@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:49:03 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/23 22:30:29 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:19:28 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -26,6 +26,10 @@ void	pointer_to_hexaTests(CuTest *tc)
 
 
 	printf("pointer_to_hexaTests\n");
+	pointer = malloc(sizeof(void *));
+	actual = pointer_to_hexa((unsigned long)pointer, 0);
+	actual = ft_strjoin_free("0x", actual, 0, 1);
+
 	/*Pipe communication*/
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
@@ -37,8 +41,9 @@ void	pointer_to_hexaTests(CuTest *tc)
 	res = read(pipefds[0], buff, MAX_BUF);
 	buff[res] = '\0';
 	expected = ft_strdup(buff);
-	actual = pointer_to_hexa((unsigned long)pointer, 0);
-	actual = ft_strjoin_free("0x", actual, 0, 1);
+	free(pointer);
+	close(pipefds[0]);
+
 	CuAssertStrEquals(tc, expected, actual);
 }
 

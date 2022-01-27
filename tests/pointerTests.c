@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:07:43 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 16:08:49 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:44:21 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	basicPointerTests(CuTest *tc)
 	int		res;
 
 	printf("basicPointerTests\n");
+	pointer = malloc(sizeof(void *));
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -38,6 +39,7 @@ void	basicPointerTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -48,6 +50,8 @@ void	basicPointerTests(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
+	free(pointer);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
@@ -75,6 +79,7 @@ void	nullPointerTest(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -84,6 +89,7 @@ void	nullPointerTest(CuTest *tc)
 	dup2(stdout_bk, fileno(stdout));
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
+	close(pipefds[0]);
 	actual_print = ft_strdup(buf);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);

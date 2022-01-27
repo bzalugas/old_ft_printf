@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:42 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/26 16:11:36 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:46:49 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 
 void	basicPrintfTests(CuTest *tc)
 {
-	printf("basic printf tests\n");
-}
-
-void	insufficientArgumentsTest(CuTest *tc)
-{
 	int		expected_return;
 	int		actual_return;
 	char	*expected_print;
@@ -30,28 +25,35 @@ void	insufficientArgumentsTest(CuTest *tc)
 	int		pipefds[2];
 	char	buf[MAX_BUF];
 	int		res;
+	void	*pointer;
 
-	printf("insufficientArgumentsTest\n");
+	printf("basic printf tests\n");
+	pointer = malloc(sizeof(void *));
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Mon char : %c");
+	expected_return = printf("test simple.\nMon char : %c puis %s, %d%d ainsi que %i%i et %u maintenant %p et enfin %x %X %%\n",
+		'B', "Je suis une string haha", 23,23,23,23,23, pointer, 23,23);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Mon char : %c");
+	actual_return = ft_printf("test simple.\nMon char : %c puis %s, %d%d ainsi que %i%i et %u maintenant %p et enfin %x %X %%\n",
+		'B', "Je suis une string haha", 23,23,23,23,23, pointer, 23,23);
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
+	free(pointer);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
@@ -79,6 +81,7 @@ void	emptyStringTest(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -89,6 +92,7 @@ void	emptyStringTest(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
@@ -116,6 +120,7 @@ void	multipleStringsTest(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
@@ -126,47 +131,50 @@ void	multipleStringsTest(CuTest *tc)
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
 }
 
-void	percentBeforeEndTest(CuTest *tc)
-{
-	int		expected_return;
-	int		actual_return;
-	char	*expected_print;
-	char	*actual_print;
-	int		stdout_bk;
-	int		pipefds[2];
-	char	buf[MAX_BUF];
-	int		res;
+/* void	percentBeforeEndTest(CuTest *tc) */
+/* { */
+/* 	int		expected_return; */
+/* 	int		actual_return; */
+/* 	char	*expected_print; */
+/* 	char	*actual_print; */
+/* 	int		stdout_bk; */
+/* 	int		pipefds[2]; */
+/* 	char	buf[MAX_BUF]; */
+/* 	int		res; */
 
-	printf("percentBeforeEndTest\n");
-	stdout_bk = dup(fileno(stdout));
-	pipe(pipefds);
-	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Voici un texte a afficher : %");
-	fflush(stdout);
-	close(pipefds[1]);
-	dup2(stdout_bk, fileno(stdout));
-	res = read(pipefds[0], buf, MAX_BUF);
-	buf[res] = '\0';
-	expected_print = ft_strdup(buf);
+/* 	printf("percentBeforeEndTest\n"); */
+/* 	stdout_bk = dup(fileno(stdout)); */
+/* 	pipe(pipefds); */
+/* 	dup2(pipefds[1], fileno(stdout)); */
+/* 	expected_return = printf("Voici un texte a afficher : %"); */
+/* 	fflush(stdout); */
+/* 	close(pipefds[1]); */
+/* 	dup2(stdout_bk, fileno(stdout)); */
+/* 	res = read(pipefds[0], buf, MAX_BUF); */
+/* 	buf[res] = '\0'; */
+/* 	expected_print = ft_strdup(buf); */
+/* close(pipefds[0]); */
 
-	pipe(pipefds);
-	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Voici un texte a afficher : %");
-	fflush(stdout);
-	close(pipefds[1]);
-	dup2(stdout_bk, fileno(stdout));
-	res = read(pipefds[0], buf, MAX_BUF);
-	buf[res] = '\0';
-	actual_print = ft_strdup(buf);
+/* 	pipe(pipefds); */
+/* 	dup2(pipefds[1], fileno(stdout)); */
+/* 	actual_return = ft_printf("Voici un texte a afficher : %"); */
+/* 	fflush(stdout); */
+/* 	close(pipefds[1]); */
+/* 	dup2(stdout_bk, fileno(stdout)); */
+/* 	res = read(pipefds[0], buf, MAX_BUF); */
+/* 	buf[res] = '\0'; */
+/* 	actual_print = ft_strdup(buf); */
+/* close(pipefds[0]); */
 
-	CuAssertStrEquals(tc, expected_print, actual_print);
-	CuAssertIntEquals(tc, expected_return, actual_return);
-}
+/* 	CuAssertStrEquals(tc, expected_print, actual_print); */
+/* 	CuAssertIntEquals(tc, expected_return, actual_return); */
+/* } */
 
 void	alonePercentTest(CuTest *tc)
 {
@@ -183,23 +191,25 @@ void	alonePercentTest(CuTest *tc)
 	stdout_bk = dup(fileno(stdout));
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	expected_return = printf("Une string avec des %% tous seuls % % %");
+	expected_return = printf("Une string avec des %% tous seuls % % ");
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	expected_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	pipe(pipefds);
 	dup2(pipefds[1], fileno(stdout));
-	actual_return = ft_printf("Une string avec des %% tous seuls % % %");
+	actual_return = ft_printf("Une string avec des %% tous seuls % % ");
 	fflush(stdout);
 	close(pipefds[1]);
 	dup2(stdout_bk, fileno(stdout));
 	res = read(pipefds[0], buf, MAX_BUF);
 	buf[res] = '\0';
 	actual_print = ft_strdup(buf);
+	close(pipefds[0]);
 
 	CuAssertStrEquals(tc, expected_print, actual_print);
 	CuAssertIntEquals(tc, expected_return, actual_return);
@@ -208,10 +218,10 @@ void	alonePercentTest(CuTest *tc)
 CuSuite	*ft_printfGetSuite()
 {
 	CuSuite	*suite = CuSuiteNew();
-	SUITE_ADD_TEST(suite, insufficientArgumentsTest);
+	/* SUITE_ADD_TEST(suite, insufficientArgumentsTest); */
 	SUITE_ADD_TEST(suite, emptyStringTest);
 	SUITE_ADD_TEST(suite, multipleStringsTest);
-	SUITE_ADD_TEST(suite, percentBeforeEndTest);
+	/* SUITE_ADD_TEST(suite, percentBeforeEndTest); */
 	SUITE_ADD_TEST(suite, alonePercentTest);
 	return (suite);
 }
