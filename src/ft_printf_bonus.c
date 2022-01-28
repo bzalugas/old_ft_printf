@@ -6,29 +6,25 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:45:56 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 17:48:17 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/28 11:38:20 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
 
-unsigned	put_flag(const char *str, t_flags *flags)
+size_t	put_flag(const char *str, t_flags *flags)
 {
-	unsigned	forward;
+	size_t	forward;
 
 	forward = 0;
-	if (str[0] == '-')
-	{
-		flags->minus = 1;
-		flags->precision = ft_atoi(str + 1);
-	}
+	if (ft_isdigit(str[0]))
+		forward = put_min_field(str, flags);
+	else if (str[0] == '-')
+		forward = put_minus(str, flags);
 	else if (str[0] == '0')
 		flags->zero = 1;
 	else if (str[0] == '.')
-	{
-		flags->dot = 1;
-		flags->precision = ft_atoi(str + 1);
-	}
+		forward = put_dot(str, flags);
 	else if (str[0] == '#')
 		flags->hashtag = 1;
 	else if (str[0] == ' ')
@@ -37,41 +33,43 @@ unsigned	put_flag(const char *str, t_flags *flags)
 		flags->plus = 1;
 	else
 		flags->conversion = str[0];
-	forward = ft_get_pow(ft_abs(flags->precision), 1);
-	return (forward + 1);
+	if (str[1] && str[1] == '0')
+		forward = 1;
+	return (forward + !ft_isdigit(str[0]));
 }
 
-t_flags	find_flags(const char *str)
+t_flags	find_flags(const char *str, size_t *forward)
 {
 	int		i;
-	int		j;
+	/* size_t	j; */
 	t_flags	flags;
 
 	flags_init(&flags);
 	i = -1;
-	j = 0;
+	/* j = 0; */
+	*forward = 0;
 	while (FLAGS[++i])
 	{
-		if (str[j] == FLAGS[i])
+		if (str[*forward] == FLAGS[i] || ft_isdigit(str[*forward]))
 		{
-			j += put_flag(&str[j], &flags);
+			*forward += put_flag(&str[*forward], &flags);
 			i = -1;
 		}
 	}
 	i = 0;
-	while (CONVERSION[i] && CONVERSION[i] != str[j])
+	while (CONVERSION[i] && CONVERSION[i] != str[*forward])
 		i++;
-	if (CONVERSION[i] && CONVERSION[i] == str[j])
-		put_flag(&CONVERSION[i], &flags);
+	if (CONVERSION[i] && CONVERSION[i] == str[*forward])
+		*forward += put_flag(&CONVERSION[i], &flags);
 	return (flags);
 }
 
 int	convert(const char *str, va_list args, t_buffer *buf)
 {
 	t_flags	flags;
-	int		forward;
+	size_t	forward;
 
-	flags = find_flags(str + 1);
+	flags = find_flags(str + 1, &forward);
 	if (flags.conversion == 'c')
 		handle_char(va_arg(args, int), &flags, buf);
 	else if (flags.conversion == '%')
@@ -79,17 +77,18 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 	else if (flags.conversion == 's')
 		handle_string(va_arg(args, char *), &flags, buf);
 	else if (flags.conversion == 'p')
-		handle_pointer(va_arg(args,unsigned long), buf);
+		handle_pointer(va_arg(args,unsigned long), &flags, buf);
 	else if (flags.conversion == 'd' || flags.conversion == 'i')
 		handle_decimal(va_arg(args, int), &flags, buf);
 	else if (flags.conversion == 'u')
 		handle_unsigned(va_arg(args, unsigned int), &flags, buf);
 	else if (flags.conversion == 'x' || flags.conversion == 'X')
 		handle_hexa(va_arg(args,unsigned int), &flags, buf);
-		forward = flags.minus + flags.zero + flags.dot + flags.hashtag +
-			flags.space + flags.plus + ft_get_pow(flags.precision, 1);
-	if (flags.conversion != '\0')
-		forward++;
+	/* forward = flags.minus + ft_get_pow(flags.min_padding, 1) + flags.zero + */
+	/* 	flags.dot + flags.hashtag + flags.space + flags.plus + */
+	/* 	ft_get_pow(flags.precision, 1); */
+	/* if (flags.conversion != '\0') */
+	/* 	forward++; */
 	return (forward + 1);
 }
 

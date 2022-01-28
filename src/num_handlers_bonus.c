@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 17:35:42 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/28 11:56:28 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ char	*pointer_to_hexa(unsigned long p, int upper_case)
 
 void	handle_unsigned(unsigned n, t_flags *flags, t_buffer *buf)
 {
-	int		i;
-	int		len;
-	char	*num;
+	unsigned	i;
+	size_t		len;
+	char		*num;
 
 	i = -1;
 	len = ft_get_pow(n, 1);
@@ -47,9 +47,9 @@ void	handle_unsigned(unsigned n, t_flags *flags, t_buffer *buf)
 
 void	handle_decimal(int n, t_flags *flags, t_buffer *buf)
 {
-	int		i;
-	int		len;
-	char	*num;
+	unsigned	i;
+	size_t		len;
+	char		*num;
 
 	i = -1;
 	len = ft_get_pow(n, 1);
@@ -90,13 +90,26 @@ void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf)
 	free(hexa);
 }
 
-void	handle_pointer(unsigned long p, t_buffer *buf)
+void	handle_pointer(unsigned long p, t_flags *flags, t_buffer *buf)
 {
-	char	*hexa;
+	char		*hexa;
+	size_t		length;
+	unsigned	i;
+
 
 	hexa = pointer_to_hexa(p, 0);
-	if (hexa)
-		buffer_add_str(buf, "0x", 0, 2);
+	hexa = ft_strjoin_free("0x", hexa, 0, 1);
+	length = ft_strlen(hexa);
+	i = flags->min_padding + 1;
+	if (flags->min_field && !flags->minus && flags->min_padding > length)
+		while (--i > length)
+			buffer_add_char(buf, ' ');
+	/* if (hexa) */
+	/* 	buffer_add_str(buf, "0x", 0, 2); */
 	buffer_add_str(buf, hexa, 0, -1);
+	i = flags->min_padding + 1;
+	if (flags->minus && flags->min_padding > length)
+		while (--i > length)
+			buffer_add_char(buf, ' ');
 	free(hexa);
 }
