@@ -4,7 +4,8 @@
 
 The instructions are simple : recode printf !
 
-* IN PROGRESS Mandatory part [33%] [1/3]
+* DONE Mandatory part [100%] [3/3]
+CLOSED: [2022-01-29 Sat 16:46]
 ** DONE general [5/5]
   - [X] Add libft to project's folder
   - [X] Prepare the Makefile of ft_printf
@@ -12,7 +13,8 @@ The instructions are simple : recode printf !
   - [X] Learn to use variadic argument
   - [X] Find the best functions structure
 
-** CODE functions [81%] [9/11]
+** CODED functions [100%] [11/11]
+CLOSED: [2022-01-29 Sat 16:46]
 *** CODED ft_printf
 CLOSED: [2022-01-26 Wed 14:38]
 *** CODED %c conversion (char)
@@ -23,8 +25,10 @@ CLOSED: [2022-01-26 Wed 14:37]
 CLOSED: [2022-01-26 Wed 14:37]
 *** CODED %d conversion (int -> decimal)
 CLOSED: [2022-01-26 Wed 16:25]
-*** CODE %i conversion (int -> int (base 10))
-*** CODE %u conversion (unsigned int -> unsigned decimal)
+*** CODED %i conversion (int -> int (base 10))
+CLOSED: [2022-01-29 Sat 16:46]
+*** CODED %u conversion (unsigned int -> unsigned decimal)
+CLOSED: [2022-01-29 Sat 16:46]
 *** CODED %x conversion (unsigned int -> unsigned hexadecimal lowercase)
 CLOSED: [2022-01-26 Wed 14:37]
 *** CODED %X consersion (unsigned int -> unsigned hexadecimal uppercase)
@@ -39,8 +43,10 @@ CLOSED: [2022-01-18 Tue 19:34]
 + [X] function ~void buffer_add_str(buffer *buf, char *str);~ (?)
 + [X] function ~void buffer_print_fd(buffer *buf, int fd);~
 
-** TODO pass all tests [0/2] [0%]
-*** TODO pass ft_printf tests [20/22] [90%]
+** DONE pass all tests [2/2] [100%]
+CLOSED: [2022-01-29 Sat 16:46]
+*** DONE pass ft_printf tests [22/22] [100%]
+CLOSED: [2022-01-29 Sat 16:45]
 + [X] insufficient arguments
 + [X] too many arguments
 + [X] empty string
@@ -63,9 +69,9 @@ CLOSED: [2022-01-18 Tue 19:34]
 + [X] incorrect int (too low)
 + [X] char argument
 
-+ [ ] normal %i input
++ [X] normal %i input
 
-+ [ ] normal %u input
++ [X] normal %u input
 
 + [X] normal %x input
 
@@ -73,21 +79,28 @@ CLOSED: [2022-01-18 Tue 19:34]
 
 + [X] normal %% input
 
-*** TODO pass intermediary functions [100%] [2/2]
+*** DONE pass intermediary functions [100%] [2/2]
+CLOSED: [2022-01-29 Sat 16:46]
 + [X] Buffer management basic test
 + [X] Buffer management empty test
 
-** Conversions check [0/9]
-  - [ ] %c
-  - [ ] %s
-  - [ ] %p
-  - [ ] %d
-  - [ ] %i
-  - [ ] %u
-  - [ ] %x
-  - [ ] %X
-  - [ ] %%
+** Conversions check [9/9]
+  - [X] %c
+  - [X] %s
+  - [X] %p
+  - [X] %d
+  - [X] %i
+  - [X] %u
+  - [X] %x
+  - [X] %X
+  - [X] %%
 
-* TODO Bonus part [0%]
-
-** CODE functions
+* TODO Bonus part [25%]
++ [X] width flag
++ [X] Minus flag
++ [ ] 0 flag
++ [ ] . flag
++ [ ] Combinations
++ [ ] # flag
++ [ ] space flag
++ [ ] + flag
