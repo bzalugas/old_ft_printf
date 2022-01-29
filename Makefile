@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/27 17:33:22 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/01/29 16:44:36 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,7 +20,7 @@ SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 OBJS		=	$(addprefix $(DIR_OUT)/,$(SRC:.c=.o))
 
 BONUS_SRC	=	ft_printf_bonus.c buffer_char.c buffer.c buffer_add.c\
-				char_handlers_bonus.c num_handlers_bonus.c flags.c
+				char_handlers_bonus.c num_handlers_bonus.c flags.c format_flags.c
 
 BONUS_SRCS	=	$(addprefix $(DIR_SRCS)/,$(BONUS_SRC))
 

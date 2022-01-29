@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/28 11:45:47 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 16:27:50 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct s_flags
 	unsigned	plus : 1;
 	char		conversion;
 }				t_flags;
+
+/*			FORMAT WITH FLAGS		*/
+
+void	add_spaces_buf(size_t len, t_buffer *buf);
 
 /*			FLAGS HANDLING			*/
 
