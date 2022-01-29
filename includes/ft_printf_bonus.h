@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 16:27:50 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:07:46 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ typedef struct s_flags
 /*			FORMAT WITH FLAGS		*/
 
 void	add_spaces_buf(size_t len, t_buffer *buf);
+void	add_zeros_buf(size_t len, t_buffer *buf);
 
 /*			FLAGS HANDLING			*/
 
 void	flags_init(t_flags *flags);
+size_t	put_zero(const char *str, t_flags *flags);
 size_t	put_min_field(const char *str, t_flags *flags);
 size_t	put_minus(const char *str, t_flags *flags);
 size_t	put_dot(const char *str, t_flags *flags);

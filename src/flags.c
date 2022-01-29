@@ -6,35 +6,68 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:04:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/28 11:46:30 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 18:26:26 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
 
+size_t	put_zero(const char *str, t_flags *flags)
+{
+	size_t	val;
+	size_t	forward;
+
+	val = 0;
+	if (ft_isdigit(str[1]))
+		val = ft_atoi(str + 1);
+	if (!flags->dot && !flags->minus)
+	{
+		flags->zero = 1;
+		flags->min_padding = val;
+	}
+	forward = 1;
+	while (str[forward] && ft_isdigit(str[forward]))
+		forward++;
+	return (forward);
+}
+
 size_t	put_min_field(const char *str, t_flags *flags)
 {
-	flags->min_field = 1;
-	flags->min_padding = ft_atoi(str);
-	return (ft_get_pow(flags->min_padding, 1));
+	size_t	val;
+
+	val = ft_atoi(str);
+	if (!flags->minus)
+	{
+		flags->min_field = 1;
+		flags->min_padding = val;
+	}
+	return (ft_get_pow(val, 1));
 }
 
 size_t	put_dot(const char *str, t_flags *flags)
 {
+	size_t	forward;
+
 	flags->dot = 1;
 	if (str[1] && ft_isdigit(str[1]))
 		flags->precision = ft_atoi(str + 1);
-	return (ft_get_pow(flags->precision, 1));
+	forward = 1;
+	while (str[forward] && ft_isdigit(str[forward]))
+		forward++;
+	return (forward);
 }
 
 size_t	put_minus(const char *str, t_flags *flags)
 {
+	size_t	forward;
+
 	flags->minus = 1;
 	if (str[1] && ft_isdigit(str[1]))
 		flags->min_padding = ft_atoi(str + 1);
-	else
-		return (0);
-	return (ft_get_pow(flags->min_padding, 1));
+	forward = 1;
+	while (str[forward] && ft_isdigit(str[forward]))
+		forward++;
+	return (forward);
 }
 
 void	flags_init(t_flags *flags)

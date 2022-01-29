@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:45:56 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/28 11:38:20 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 18:21:13 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ size_t	put_flag(const char *str, t_flags *flags)
 	size_t	forward;
 
 	forward = 0;
-	if (ft_isdigit(str[0]))
+	if (ft_isdigit(str[0]) && str[0] != '0')
 		forward = put_min_field(str, flags);
 	else if (str[0] == '-')
 		forward = put_minus(str, flags);
 	else if (str[0] == '0')
-		flags->zero = 1;
+		forward = put_zero(str, flags);
 	else if (str[0] == '.')
 		forward = put_dot(str, flags);
 	else if (str[0] == '#')
@@ -32,10 +32,11 @@ size_t	put_flag(const char *str, t_flags *flags)
 	else if (str[0] == '+')
 		flags->plus = 1;
 	else
+	{
 		flags->conversion = str[0];
-	if (str[1] && str[1] == '0')
-		forward = 1;
-	return (forward + !ft_isdigit(str[0]));
+		forward++;
+	}
+	return (forward);
 }
 
 t_flags	find_flags(const char *str, size_t *forward)
