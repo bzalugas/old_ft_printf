@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:06:11 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 12:53:28 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:16:50 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	handle_char(int c, t_buffer *buf)
 {
-	char	character = c;
-
-	buffer_add_char(buf, character);
+	buffer_add_char(buf, c);
 }
 
 void	handle_string(const char *str, t_buffer *buf)

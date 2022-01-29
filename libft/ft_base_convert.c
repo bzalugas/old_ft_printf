@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 10:54:10 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/23 22:22:51 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:12:45 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	is_base(char *base)
 	if (!base)
 		return (0);
 	while (base[++i])
-		if ((base [i + 1] && ft_find_char(base[i], (base + i + 1)) != -1) ||
-			base[i] == '-')
+		if ((base [i + 1] && ft_find_char(base[i], (base + i + 1)) != -1)
+			|| base[i] == '-')
 			return (0);
 	return (1);
 }
@@ -38,7 +38,6 @@ static int	is_numbase(char **num, char *base, int *negative)
 	if (i != 0)
 		*negative = 1;
 	*num = *num + i;
-	/* i = -1; */
 	i = -1;
 	while (*(*num + i))
 		if (ft_find_char(*(*num + i), base) == -1)
@@ -71,7 +70,7 @@ static char	*lst_to_str(t_list *lst)
 	return (str);
 }
 
-static char	*ite_dec_to_base(unsigned long nb, char *base, int len, int negative)
+static char	*ite_dec_to_base(unsigned long nb, char *base, int len, int neg)
 {
 	t_list	*lst;
 	char	c;
@@ -88,7 +87,7 @@ static char	*ite_dec_to_base(unsigned long nb, char *base, int len, int negative
 		ft_lstadd_front(&lst, ft_lstnew(ft_strdup(&c)));
 		nb /= len;
 	}
-	if (negative)
+	if (neg)
 	{
 		c = '-';
 		ft_lstadd_front(&lst, ft_lstnew(ft_strdup(&c)));
@@ -99,10 +98,10 @@ static char	*ite_dec_to_base(unsigned long nb, char *base, int len, int negative
 char	*ft_base_convert(char *num, char *src_base, char *dst_base)
 {
 	unsigned long	nb;
-	int	i;
-	int	src_len;
-	int	dst_len;
-	int	negative;
+	int				i;
+	int				src_len;
+	int				dst_len;
+	int				negative;
 
 	negative = 0;
 	if (is_base(src_base) && is_numbase(&num, src_base, &negative))

@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 12:56:59 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:20:00 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 	else if (conv == 's')
 		handle_string(va_arg(args, char *), buf);
 	else if (conv == 'p')
-		handle_pointer(va_arg(args,unsigned long), buf);
+		handle_pointer(va_arg(args, unsigned long), buf);
 	else if (conv == 'd' || conv == 'i')
 		handle_decimal(va_arg(args, int), buf);
 	else if (conv == 'u')
 		handle_unsigned(va_arg(args, unsigned int), buf);
 	else if (conv == 'x')
-		handle_hexa(va_arg(args,unsigned int), 0, buf);
+		handle_hexa(va_arg(args, unsigned int), 0, buf);
 	else if (conv == 'X')
-		handle_hexa(va_arg(args,unsigned int), 1, buf);
+		handle_hexa(va_arg(args, unsigned int), 1, buf);
 	return (2);
 }
 

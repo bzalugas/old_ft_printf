@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 20:07:56 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:25:10 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*pointer_to_hexa(unsigned long p, int upper_case)
 	pointer = ft_utoa(p);
 	hexa = NULL;
 	if (upper_case)
-		hexa = 	ft_base_convert(pointer, "0123456789", "0123456789ABCDEF");
+		hexa = ft_base_convert(pointer, "0123456789", "0123456789ABCDEF");
 	else
 		hexa = ft_base_convert(pointer, "0123456789", "0123456789abcdef");
 	free(pointer);
@@ -69,20 +69,15 @@ void	handle_decimal(int n, t_flags *flags, t_buffer *buf)
 
 void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf)
 {
-	int		upper_case;
 	char	*hexa;
 	char	*pre;
 	size_t	len;
 
-	upper_case = 0;
 	pre = "0x";
 	if (flags->conversion == 'X')
-	{
-		upper_case = 1;
 		pre = "0X";
-	}
 	hexa = NULL;
-	hexa = pointer_to_hexa(n, upper_case);
+	hexa = pointer_to_hexa(n, (flags->conversion - 'x'));
 	len = ft_strlen(hexa);
 	if (flags->dot && flags->precision > len)
 		add_zeros_buf(flags->precision - len, buf);

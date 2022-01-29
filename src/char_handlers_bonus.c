@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:06:11 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 19:04:41 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:17:51 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 void	handle_char(int c, t_flags *flags, t_buffer *buf)
 {
-	char	character = c;
-
 	if (flags->min_field && flags->min_padding > 1)
 		add_spaces_buf(flags->min_padding - 1, buf);
-	buffer_add_char(buf, character);
+	buffer_add_char(buf, c);
 	if (flags->minus && flags->min_padding > 1)
 		add_spaces_buf(flags->min_padding - 1, buf);
-
 }
 
 void	handle_string(const char *str, t_flags *flags, t_buffer *buf)

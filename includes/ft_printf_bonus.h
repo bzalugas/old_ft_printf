@@ -6,12 +6,12 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 17:07:46 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:15:33 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 # include "../libft/libft.h"
 # include "buffer.h"
 # include <stdarg.h>
@@ -21,16 +21,16 @@
 
 typedef struct s_flags
 {
-	unsigned	min_field : 1;
-	unsigned	minus : 1;
-	unsigned	min_padding;
-	unsigned	zero : 1;
-	unsigned	dot : 1;
-	unsigned	precision;
-	unsigned	hashtag : 1;
-	unsigned	space : 1;
-	unsigned	plus : 1;
-	char		conversion;
+	unsigned		min_field : 1;
+	unsigned		minus : 1;
+	unsigned int	min_padding;
+	unsigned		zero : 1;
+	unsigned		dot : 1;
+	unsigned int	precision;
+	unsigned		hashtag : 1;
+	unsigned		space : 1;
+	unsigned		plus : 1;
+	char			conversion;
 }				t_flags;
 
 /*			FORMAT WITH FLAGS		*/

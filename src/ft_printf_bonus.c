@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:45:56 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 18:21:13 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:21:19 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ size_t	put_flag(const char *str, t_flags *flags)
 t_flags	find_flags(const char *str, size_t *forward)
 {
 	int		i;
-	/* size_t	j; */
 	t_flags	flags;
 
 	flags_init(&flags);
 	i = -1;
-	/* j = 0; */
 	*forward = 0;
 	while (FLAGS[++i])
 	{
@@ -78,18 +76,13 @@ int	convert(const char *str, va_list args, t_buffer *buf)
 	else if (flags.conversion == 's')
 		handle_string(va_arg(args, char *), &flags, buf);
 	else if (flags.conversion == 'p')
-		handle_pointer(va_arg(args,unsigned long), &flags, buf);
+		handle_pointer(va_arg(args, unsigned long), &flags, buf);
 	else if (flags.conversion == 'd' || flags.conversion == 'i')
 		handle_decimal(va_arg(args, int), &flags, buf);
 	else if (flags.conversion == 'u')
 		handle_unsigned(va_arg(args, unsigned int), &flags, buf);
 	else if (flags.conversion == 'x' || flags.conversion == 'X')
-		handle_hexa(va_arg(args,unsigned int), &flags, buf);
-	/* forward = flags.minus + ft_get_pow(flags.min_padding, 1) + flags.zero + */
-	/* 	flags.dot + flags.hashtag + flags.space + flags.plus + */
-	/* 	ft_get_pow(flags.precision, 1); */
-	/* if (flags.conversion != '\0') */
-	/* 	forward++; */
+		handle_hexa(va_arg(args, unsigned int), &flags, buf);
 	return (forward + 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 17:34:54 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:21:50 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*pointer_to_hexa(unsigned long p, int upper_case)
 	pointer = ft_utoa(p);
 	hexa = NULL;
 	if (upper_case)
-		hexa = 	ft_base_convert(pointer, "0123456789", "0123456789ABCDEF");
+		hexa = ft_base_convert(pointer, "0123456789", "0123456789ABCDEF");
 	else
 		hexa = ft_base_convert(pointer, "0123456789", "0123456789abcdef");
 	free(pointer);

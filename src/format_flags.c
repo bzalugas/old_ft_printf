@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:04:18 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 17:02:57 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:19:01 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	add_spaces_buf(size_t len, t_buffer *buf)
 {
-	unsigned	i;
+	unsigned int	i;
 
 	i = 0;
 	while (++i < len + 1)
@@ -23,7 +23,7 @@ void	add_spaces_buf(size_t len, t_buffer *buf)
 
 void	add_zeros_buf(size_t len, t_buffer *buf)
 {
-	unsigned	i;
+	unsigned int	i;
 
 	i = 0;
 	while (++i < len + 1)
