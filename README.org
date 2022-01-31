@@ -20,3 +20,14 @@ int ft_printf(char *str, ...)
 + ~%x~ print a number in haxadecimal (base 16), with lowercase.
 + ~%X~ print a number in haxadecimal (base 16), with uppercase.
 + ~%%~ print a percent sign.
+
+* BONUS PART
+** Required flags :
++ width
++ ~%-~
++ ~%0~
++ ~%.~
++ Any combination of them
++ ~%#~
++ ~%space~
++ ~%+~
