@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 20:15:33 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:49:02 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ typedef struct s_flags
 {
 	unsigned		min_field : 1;
 	unsigned		minus : 1;
-	unsigned int	min_padding;
+	unsigned int	padding;
 	unsigned		zero : 1;
 	unsigned		dot : 1;
 	unsigned int	precision;
-	unsigned		hashtag : 1;
+	unsigned		sharp : 1;
 	unsigned		space : 1;
 	unsigned		plus : 1;
 	char			conversion;
@@ -35,8 +35,9 @@ typedef struct s_flags
 
 /*			FORMAT WITH FLAGS		*/
 
-void	add_spaces_buf(size_t len, t_buffer *buf);
-void	add_zeros_buf(size_t len, t_buffer *buf);
+size_t	add_spaces_buf(size_t len, t_buffer *buf);
+size_t	add_zeros_buf(size_t len, t_buffer *buf);
+void	format_num(char *num, t_flags *flags, t_buffer *buf);
 
 /*			FLAGS HANDLING			*/
 

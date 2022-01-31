@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:04:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 18:26:26 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:50:04 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ size_t	put_zero(const char *str, t_flags *flags)
 	if (!flags->dot && !flags->minus)
 	{
 		flags->zero = 1;
-		flags->min_padding = val;
+		flags->precision = val;
+	}
+	else if (flags->dot && !flags->minus)
+	{
+		flags->min_field = 1;
+		flags->padding = val;
 	}
 	forward = 1;
 	while (str[forward] && ft_isdigit(str[forward]))
@@ -39,7 +44,7 @@ size_t	put_min_field(const char *str, t_flags *flags)
 	if (!flags->minus)
 	{
 		flags->min_field = 1;
-		flags->min_padding = val;
+		flags->padding = val;
 	}
 	return (ft_get_pow(val, 1));
 }
@@ -49,6 +54,13 @@ size_t	put_dot(const char *str, t_flags *flags)
 	size_t	forward;
 
 	flags->dot = 1;
+	if (flags->zero)
+	{
+		flags->zero = 0;
+		flags->min_field = 1;
+		flags->padding = flags->precision;
+		flags->precision = 0;
+	}
 	if (str[1] && ft_isdigit(str[1]))
 		flags->precision = ft_atoi(str + 1);
 	forward = 1;
@@ -63,7 +75,7 @@ size_t	put_minus(const char *str, t_flags *flags)
 
 	flags->minus = 1;
 	if (str[1] && ft_isdigit(str[1]))
-		flags->min_padding = ft_atoi(str + 1);
+		flags->padding = ft_atoi(str + 1);
 	forward = 1;
 	while (str[forward] && ft_isdigit(str[forward]))
 		forward++;
@@ -74,11 +86,12 @@ void	flags_init(t_flags *flags)
 {
 	flags->min_field = 0;
 	flags->minus = 0;
-	flags->min_padding = 0;
+	flags->padding = 0;
 	flags->zero = 0;
+	/* flags->zero_padding = 0; */
 	flags->dot = 0;
 	flags->precision = 0;
-	flags->hashtag = 0;
+	flags->sharp = 0;
 	flags->space = 0;
 	flags->plus = 0;
 	flags->conversion = '\0';
