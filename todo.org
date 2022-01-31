@@ -95,12 +95,13 @@ CLOSED: [2022-01-29 Sat 16:46]
   - [X] %X
   - [X] %%
 
-* TODO Bonus part [25%]
+* DONE Bonus part [100%]
+CLOSED: [2022-01-31 Mon 22:03]
 + [X] width flag
 + [X] Minus flag
-+ [ ] 0 flag
-+ [ ] . flag
-+ [ ] Combinations
-+ [ ] # flag
-+ [ ] space flag
-+ [ ] + flag
++ [X] 0 flag
++ [X] . flag
++ [X] Combinations
++ [X] # flag
++ [X] space flag
++ [X] + flag
