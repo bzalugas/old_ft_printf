@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 19:49:02 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 21:07:21 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ typedef struct s_flags
 
 /*			FORMAT WITH FLAGS		*/
 
-size_t	add_spaces_buf(size_t len, t_buffer *buf);
-size_t	add_zeros_buf(size_t len, t_buffer *buf);
+size_t	add_chars_buf(size_t len, t_buffer *buf, char c);
 void	format_num(char *num, t_flags *flags, t_buffer *buf);
 
 /*			FLAGS HANDLING			*/

@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 20:45:56 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 15:58:37 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 21:36:30 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ size_t	put_flag(const char *str, t_flags *flags)
 		forward = put_zero(str, flags);
 	else if (str[0] == '.')
 		forward = put_dot(str, flags);
-	else if (str[0] == '#')
-		flags->sharp = 1;
-	else if (str[0] == ' ')
-		flags->space = 1;
-	else if (str[0] == '+')
-		flags->plus = 1;
 	else
 	{
-		flags->conversion = str[0];
+		if (str[0] == '#')
+			flags->sharp = 1;
+		if (str[0] == ' ')
+			flags->space = 1;
+		if (str[0] == '+')
+			flags->plus = 1;
+		else
+			flags->conversion = str[0];
 		forward++;
 	}
 	return (forward);
