@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 21:22:42 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:27:48 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	handle_pointer(unsigned long p, t_flags *flags, t_buffer *buf)
 	hexa = ft_strjoin_free("0x", hexa, 0, 1);
 	len = ft_strlen(hexa);
 	if (flags->min_field && flags->padding > len)
-		len += add_chars_buf(flags->padding - len, buf, ' ');
+		len += buffer_add_chars(buf, ' ', flags->padding - len);
 	buffer_add_str(buf, hexa, 0, -1);
 	if (flags->minus && flags->padding > len)
-		len += add_chars_buf(flags->padding - len, buf, ' ');
+		len += buffer_add_chars(buf, ' ', flags->padding - len);
 	free(hexa);
 }

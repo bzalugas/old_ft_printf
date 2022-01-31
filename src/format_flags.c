@@ -6,21 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:04:18 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 22:05:43 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:25:14 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-
-size_t	add_chars_buf(size_t len, t_buffer *buf, char c)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (++i < len + 1)
-		buffer_add_char(buf, c);
-	return (i - 1);
-}
 
 static size_t	make_num(char *num, t_flags *flags)
 {
@@ -45,11 +35,11 @@ void	format_num(char *num, t_flags *flags, t_buffer *buf)
 	len_num = make_num(num, flags);
 	len = len_num + (len_num > 0 && num[0] == '-') + flags->precision;
 	if (flags->plus && num[0] != '-')
-		len += add_chars_buf(1, buf, '+');
+		len += buffer_add_chars(buf, '+', 1);
 	if (flags->space && num[0] != '-')
-		len += add_chars_buf(1, buf, ' ');
+		len += buffer_add_chars(buf, ' ', 1);
 	if (flags->min_field && flags->padding > len)
-		len += add_chars_buf(flags->padding - len, buf, ' ');
+		len += buffer_add_chars(buf, ' ', flags->padding - len);
 	if (num[0] == '-')
 		buffer_add_char(buf, '-');
 	if ((flags->conversion == 'x' || flags->conversion == 'X') && flags->sharp
@@ -58,8 +48,8 @@ void	format_num(char *num, t_flags *flags, t_buffer *buf)
 		buffer_add_char(buf, '0');
 		buffer_add_char(buf, flags->conversion);
 	}
-	add_chars_buf(flags->precision, buf, '0');
+	buffer_add_chars(buf, '0', flags->precision);
 	buffer_add_str(buf, num, 0 + (num[0] == '-'), len_num);
 	if (flags->minus && flags->padding > len)
-		add_chars_buf(flags->padding - len, buf, ' ');
+		buffer_add_chars(buf, ' ', flags->padding - len);
 }

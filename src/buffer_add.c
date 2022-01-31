@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 20:03:16 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/21 14:53:47 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:20:25 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -45,4 +45,14 @@ void	buffer_add_str(t_buffer *buf, const char *str, int start, int length)
 			buffer_char_add(&buf->first, new_char);
 		i++;
 	}
+}
+
+size_t	buffer_add_chars(t_buffer *buf, char c, size_t len)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (++i < len + 1)
+		buffer_add_char(buf, c);
+	return (i - 1);
 }
