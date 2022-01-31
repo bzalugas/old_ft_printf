@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:04:18 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 21:46:50 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:05:43 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ void	format_num(char *num, t_flags *flags, t_buffer *buf)
 	size_t	len;
 	size_t	len_num;
 
-	/* len_num = ft_strlen(num) - (num[0] == '-'); */
-	/* if (num[0] == '0' && flags->dot && flags->precision == 0) */
-	/* 	len_num = 0; */
-	/* if ((flags->dot || flags->zero) && flags->precision > len_num) */
-	/* 	flags->precision -= len_num + (flags->zero && num[0] == '-'); */
-	/* else */
-	/* 	flags->precision = 0; */
-	/* len = len_num + (len_num > 0 && num[0] == '-') + flags->precision; */
 	len_num = make_num(num, flags);
 	len = len_num + (len_num > 0 && num[0] == '-') + flags->precision;
 	if (flags->plus && num[0] != '-')

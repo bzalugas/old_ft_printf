@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:04:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 19:50:04 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:05:31 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	flags_init(t_flags *flags)
 	flags->minus = 0;
 	flags->padding = 0;
 	flags->zero = 0;
-	/* flags->zero_padding = 0; */
 	flags->dot = 0;
 	flags->precision = 0;
 	flags->sharp = 0;
