@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 11:30:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 17:23:02 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/01/31 21:59:11 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ void	RunAllTests()
 
 int		main(void)
 {
-	/* RunAllTests(); */
-	/* ft_printf("blabla sans flags, %d\n", 23); */
-	/* ft_printf("blabla avec flags, %+d\n", 23); */
-	/* ft_printf(" %p %p \n", 0,0); */
-	/* ft_printf(" %u \n", 0); */
-	printf("   printf : %c%c%c*\n",'\0', '1', 1);
-	ft_printf("ft_printf : %c%c%c*\n",'\0', '1', 1);
-	/* printf("power of 1 : %d et 0 : %d\n", ft_get_pow(1,1), ft_get_pow(0,1)); */
+	RunAllTests();
 	return (0);
 }
