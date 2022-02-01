@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 10:54:10 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 20:12:45 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/01 12:15:14 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	is_numbase(char **num, char *base, int *negative)
 		*negative = 1;
 	*num = *num + i;
 	i = -1;
-	while (*(*num + i))
+	while (*(*num + (++i)))
 		if (ft_find_char(*(*num + i), base) == -1)
 			return (0);
 	return (1);
