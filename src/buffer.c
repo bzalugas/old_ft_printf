@@ -6,10 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:49:40 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 17:28:09 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 10:25:17 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/ft_printf.h"
+
+#include "buffer.h"
 
 t_buffer	*buffer_new(void)
 {

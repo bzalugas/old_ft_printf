@@ -6,11 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:04:18 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 22:25:14 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 09:58:07 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static size_t	make_num(char *num, t_flags *flags)
 {

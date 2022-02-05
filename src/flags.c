@@ -6,11 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:04:49 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 22:05:31 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 09:57:51 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf_bonus.h"
+#include "ft_printf.h"
 
 size_t	put_zero(const char *str, t_flags *flags)
 {

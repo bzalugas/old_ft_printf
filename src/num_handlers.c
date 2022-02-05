@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_handlers.c                                     :+:      :+:    :+:   */
+/*   num_handlers_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 20:21:50 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 09:59:05 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 char	*pointer_to_hexa(unsigned long p, int upper_case)
 {
@@ -27,40 +27,48 @@ char	*pointer_to_hexa(unsigned long p, int upper_case)
 	return (hexa);
 }
 
-void	handle_unsigned(unsigned n, t_buffer *buf)
+void	handle_unsigned(unsigned n, t_flags *flags, t_buffer *buf)
 {
 	char	*num;
 
 	num = ft_utoa(n);
-	buffer_add_str(buf, num, 0, -1);
-	free(num);
+	format_num(num, flags, buf);
+	if (num)
+		free(num);
 }
 
-void	handle_decimal(int n, t_buffer *buf)
+void	handle_decimal(int n, t_flags *flags, t_buffer *buf)
 {
 	char	*num;
 
 	num = ft_itoa(n);
-	buffer_add_str(buf, num, 0, -1);
-	free(num);
+	format_num(num, flags, buf);
+	if (num)
+		free(num);
 }
 
-void	handle_hexa(unsigned int n, int upper_case, t_buffer *buf)
+void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf)
 {
-	char	*hexa;
+	char	*hex;
 
-	hexa = pointer_to_hexa(n, upper_case);
-	buffer_add_str(buf, hexa, 0, -1);
-	free(hexa);
+	hex = pointer_to_hexa(n, (flags->conversion - 'x'));
+	format_num(hex, flags, buf);
+	if (hex)
+		free(hex);
 }
 
-void	handle_pointer(unsigned long p, t_buffer *buf)
+void	handle_pointer(unsigned long p, t_flags *flags, t_buffer *buf)
 {
-	char	*hexa;
+	char		*hexa;
+	size_t		len;
 
 	hexa = pointer_to_hexa(p, 0);
-	if (hexa)
-		buffer_add_str(buf, "0x", 0, 2);
+	hexa = ft_strjoin_free("0x", hexa, 0, 1);
+	len = ft_strlen(hexa);
+	if (flags->min_field && flags->padding > len)
+		len += buffer_add_chars(buf, ' ', flags->padding - len);
 	buffer_add_str(buf, hexa, 0, -1);
+	if (flags->minus && flags->padding > len)
+		len += buffer_add_chars(buf, ' ', flags->padding - len);
 	free(hexa);
 }

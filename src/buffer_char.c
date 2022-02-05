@@ -6,11 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:24:26 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/19 16:30:26 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 09:57:15 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/ft_printf.h"
-/* #include "../includes/leaks_tester.h" */
+
+#include "buffer.h"
 
 t_buffer_char	*buffer_char_new(char content)
 {

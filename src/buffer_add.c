@@ -6,10 +6,11 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 20:03:16 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 22:20:25 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 09:57:07 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/ft_printf.h"
+
+#include "buffer.h"
 
 void	buffer_add_char(t_buffer *buf, char c)
 {

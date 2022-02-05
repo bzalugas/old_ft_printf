@@ -1,53 +1,90 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/28 19:29:17 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/29 20:20:00 by bzalugas         ###   ########.fr       */
+/*   Created: 2022/01/26 20:45:56 by bzalugas          #+#    #+#             */
+/*   Updated: 2022/02/05 09:58:16 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
-char	find_conversion(const char *str)
+size_t	put_flag(const char *str, t_flags *flags)
 {
-	int	i;
+	size_t	forward;
 
+	forward = 0;
+	if (ft_isdigit(str[0]) && str[0] != '0')
+		forward = put_min_field(str, flags);
+	else if (str[0] == '-')
+		forward = put_minus(str, flags);
+	else if (str[0] == '0')
+		forward = put_zero(str, flags);
+	else if (str[0] == '.')
+		forward = put_dot(str, flags);
+	else
+	{
+		if (str[0] == '#')
+			flags->sharp = 1;
+		if (str[0] == ' ')
+			flags->space = 1;
+		if (str[0] == '+')
+			flags->plus = 1;
+		else
+			flags->conversion = str[0];
+		forward++;
+	}
+	return (forward);
+}
+
+t_flags	find_flags(const char *str, size_t *forward)
+{
+	int		i;
+	t_flags	flags;
+
+	flags_init(&flags);
 	i = -1;
-	while (CONVERSION[++i])
-		if (CONVERSION[i] == str[0])
-			return (CONVERSION[i]);
-	return ('\0');
+	*forward = 0;
+	while (FLAGS[++i])
+	{
+		if (str[*forward] == FLAGS[i] || ft_isdigit(str[*forward]))
+		{
+			*forward += put_flag(&str[*forward], &flags);
+			i = -1;
+		}
+	}
+	i = 0;
+	while (CONVERSION[i] && CONVERSION[i] != str[*forward])
+		i++;
+	if (CONVERSION[i] && CONVERSION[i] == str[*forward])
+		*forward += put_flag(&CONVERSION[i], &flags);
+	return (flags);
 }
 
 int	convert(const char *str, va_list args, t_buffer *buf)
 {
-	char	conv;
+	t_flags	flags;
+	size_t	forward;
 
-	conv = find_conversion(str + 1);
-	if (!conv)
-		return (1);
-	if (conv == 'c')
-		handle_char(va_arg(args, int), buf);
-	else if (conv == '%')
-		handle_char('%', buf);
-	else if (conv == 's')
-		handle_string(va_arg(args, char *), buf);
-	else if (conv == 'p')
-		handle_pointer(va_arg(args, unsigned long), buf);
-	else if (conv == 'd' || conv == 'i')
-		handle_decimal(va_arg(args, int), buf);
-	else if (conv == 'u')
-		handle_unsigned(va_arg(args, unsigned int), buf);
-	else if (conv == 'x')
-		handle_hexa(va_arg(args, unsigned int), 0, buf);
-	else if (conv == 'X')
-		handle_hexa(va_arg(args, unsigned int), 1, buf);
-	return (2);
+	flags = find_flags(str + 1, &forward);
+	if (flags.conversion == 'c')
+		handle_char(va_arg(args, int), &flags, buf);
+	else if (flags.conversion == '%')
+		handle_char('%', &flags, buf);
+	else if (flags.conversion == 's')
+		handle_string(va_arg(args, char *), &flags, buf);
+	else if (flags.conversion == 'p')
+		handle_pointer(va_arg(args, unsigned long), &flags, buf);
+	else if (flags.conversion == 'd' || flags.conversion == 'i')
+		handle_decimal(va_arg(args, int), &flags, buf);
+	else if (flags.conversion == 'u')
+		handle_unsigned(va_arg(args, unsigned int), &flags, buf);
+	else if (flags.conversion == 'x' || flags.conversion == 'X')
+		handle_hexa(va_arg(args, unsigned int), &flags, buf);
+	return (forward + 1);
 }
 
 void	str_transform(const char *str, va_list args, t_buffer *buf)

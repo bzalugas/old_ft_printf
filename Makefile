@@ -6,25 +6,18 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/02/01 19:59:24 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/02/05 10:23:08 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 ##### Sources ######
 
-SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c char_handlers.c\
-				num_handlers.c format_flags.c
+SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c\
+				char_handlers.c num_handlers.c flags.c format_flags.c
 
 SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 
 OBJS		=	$(addprefix $(DIR_OUT)/,$(SRC:.c=.o))
-
-BONUS_SRC	=	ft_printf_bonus.c buffer_char.c buffer.c buffer_add.c\
-				char_handlers_bonus.c num_handlers_bonus.c flags.c format_flags.c
-
-BONUS_SRCS	=	$(addprefix $(DIR_SRCS)/,$(BONUS_SRC))
-
-BONUS_OBJS	=	$(addprefix $(DIR_OUT)/,$(BONUS_SRC:.c=.o))
 
 DIR_SRCS	=	src
 
@@ -41,8 +34,6 @@ NAME		=	libftprintf.a
 LIBFT_NAME	=	libft.a
 
 LIBFT		=	$(DIR_LIBFT)/$(LIBFT_NAME)
-
-TESTER_NAME	=	tester.out
 
 ##### Commands #####
 
@@ -70,18 +61,14 @@ END			=	\033[0m
 
 all:				$(NAME)
 
+bonus:				$(NAME)
+
 $(NAME):			$(OBJS)
 					make -C $(DIR_LIBFT) all
 					@cp $(LIBFT) ./$(NAME)
 					@echo "$(GREEN)$(LIBFT_NAME) copied in current folder$(END)"
 					@$(LIB) $(NAME) $(OBJS)
 					@echo "$(GREEN)$(NAME) built$(END)"
-
-bonus:				fclean $(BONUS_OBJS)
-					@$(LIB) $(NAME) $(BONUS_OBJS)
-					@echo "$(GREEN)$(NAME) bonuses built$(END)"
-
-#Rule for every sources of the project
 
 $(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c | $(DIR_OUT)
 					@$(CC) $(CFLAGS) -I $(HEADERS) -o $@ -c $<
