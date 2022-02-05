@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/02/05 10:23:08 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/02/05 11:11:17 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -88,8 +88,7 @@ fclean:				clean
 					@$(RM) $(NAME)
 					@$(RM) $(TESTER_NAME)
 					@echo "$(GREEN)$(NAME) deleted$(END)"
-					@echo "$(GREEN)$(TESTER_NAME) deleted$(END)"
 
 re:					fclean all
 
-.PHONY:				libft bonus
+.PHONY:				all clean flcean re libft bonus
