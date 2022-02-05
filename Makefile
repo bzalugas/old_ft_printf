@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/02/05 11:11:17 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/02/05 11:20:18 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -57,6 +57,10 @@ RED			=	\033[1;31m
 
 END			=	\033[0m
 
+##### Variable to know if DIR_OUT exists #####
+
+OUT			=	$(shell if [ -d $(DIR_OUT) ]; then echo "true";fi;)
+
 ##### RULES #####
 
 all:				$(NAME)
@@ -77,16 +81,21 @@ $(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c | $(DIR_OUT)
 $(DIR_OUT):
 					@mkdir -p $@
 					@echo "$(GREEN)$(DIR_OUT) folder created$(END)"
-clean:
+
+ifeq ($(OUT), true)
+clean:				
 					@$(RM) $(OBJS) $(BONUS_OBJS)
 					@$(RMDIR) $(DIR_OUT)
 					@echo "$(GREEN)Objects and objects folder deleted$(END)"
+else
+clean:
+					@echo "$(GREEN)Objects folder already deleted$(END)"
+endif
 
 fclean:				clean
 					@make -C $(DIR_LIBFT) fclean
 					@echo "$(GREEN)fclean libft$(END)"
 					@$(RM) $(NAME)
-					@$(RM) $(TESTER_NAME)
 					@echo "$(GREEN)$(NAME) deleted$(END)"
 
 re:					fclean all
