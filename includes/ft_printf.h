@@ -6,18 +6,26 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 19:30:36 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/31 22:23:29 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 10:52:07 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_BONUS_H
-# define FT_PRINTF_BONUS_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include "../libft/libft.h"
 # include "buffer.h"
 # include <stdarg.h>
 # define CONVERT_SYMBOL '%'
 # define CONVERSION "cspdiuxX%"
 # define FLAGS "-0.# +"
+
+# define APPLE 1
+# define LINUX 2
+# ifdef __APPLE__
+#  define OS APPLE
+# else
+#  define OS LINUX
+# endif
 
 typedef struct s_flags
 {

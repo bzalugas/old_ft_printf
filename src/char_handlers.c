@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:06:11 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/02/05 09:57:29 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 10:49:35 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	handle_string(const char *str, t_flags *flags, t_buffer *buf)
 {
 	size_t		len;
 
-	if (!str)
+	if (!str && (!flags->dot || flags->precision > 5))
 		str = "(null)";
 	len = ft_strlen(str);
 	if (flags->dot && flags->precision < len)

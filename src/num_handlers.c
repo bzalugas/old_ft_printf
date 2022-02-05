@@ -6,7 +6,7 @@
 /*   By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:05:28 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/02/05 09:59:05 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/05 10:36:15 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,20 @@ void	handle_hexa(unsigned int n, t_flags *flags, t_buffer *buf)
 void	handle_pointer(unsigned long p, t_flags *flags, t_buffer *buf)
 {
 	char		*hexa;
+	char		*pre;
 	size_t		len;
 
-	hexa = pointer_to_hexa(p, 0);
-	hexa = ft_strjoin_free("0x", hexa, 0, 1);
+	if (OS & LINUX && p == 0)
+	{
+		hexa = ft_strdup("(nil)");
+		pre = "";
+	}
+	else
+	{
+		pre = "0x";
+		hexa = pointer_to_hexa(p, 0);
+	}
+	hexa = ft_strjoin_free(pre, hexa, 0, 1);
 	len = ft_strlen(hexa);
 	if (flags->min_field && flags->padding > len)
 		len += buffer_add_chars(buf, ' ', flags->padding - len);
