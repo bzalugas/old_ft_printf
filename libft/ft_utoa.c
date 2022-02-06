@@ -6,7 +6,7 @@
 /*   By: bzalugas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 19:21:04 by bzalugas          #+#    #+#             */
-/*   Updated: 2022/01/27 17:30:14 by bzalugas         ###   ########.fr       */
+/*   Updated: 2022/02/06 14:41:04 by bzalugas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static char	*zero(void)
 
 char	*ft_utoa(unsigned long n)
 {
-	int	pow;
-	char			*s;
-	size_t			i;
+	int		pow;
+	char	*s;
+	size_t	i;
 
 	if (n == 0)
 		return (zero());
