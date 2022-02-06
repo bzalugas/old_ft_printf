@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/02/06 13:25:19 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/02/06 15:25:48 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -61,7 +61,9 @@ $(DIR_OUT):
 					mkdir -p $(DIR_OUT)
 
 clean:				
+					rm -f $(OBJS)
 					rm -rf $(DIR_OUT)
+					make -C $(DIR_LIBFT) clean
 
 fclean:				clean
 					make -C $(DIR_LIBFT) fclean
