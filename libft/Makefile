@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/15 16:01:33 by bzalugas          #+#    #+#              #
-#    Updated: 2022/01/26 16:19:37 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/02/06 10:50:41 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,17 +20,11 @@ SRCS	=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 			ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_utoa.c \
 			ft_base_convert.c ft_find_char.c ft_lstdelcontent.c ft_get_pow.c ft_abs.c
 
-MAIN	=	main.c
-
-OBJM	=	$(MAIN:.c=.o)
-
-TNAME	= 	test
-
 OBJS 	= 	$(SRCS:.c=.o)
 
 NAME	= 	libft.a
 
-CC		= 	clang
+CC		= 	cc
 
 CFLAGS	= 	-Wall -Wextra -Werror
 
@@ -38,38 +32,20 @@ AR		= 	ar rc
 
 RM		= 	rm -f
 
-GREEN	=	"\033[1;32m"
-
-RED		=	"\033[1;31m"
-
-END		=	"\033[0m"
-
-CLEAN	=	@echo $(RED)"Cleaning objects of $(NAME)"$(END)
-
-BUILT	=	@echo $(GREEN)"$(NAME) built"$(END)
-
-DELETE	=	@echo $(RED)"Cleaning $(NAME)"$(END)
-
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(AR) $(NAME) $(OBJS)
-			$(BUILT)
+			$(AR) $(NAME) $(OBJS)
 
 %.o:		%.c
-			@$(CC) $(CFLAGS) -o $(<:.c=.o) -c $<
-
-test:		$(NAME)
-			@$(CC) $(CFLAGS) -o $(TNAME) $(MAIN) -L. -lft
+			$(CC) $(CFLAGS) -o $(<:.c=.o) -c $<
 
 clean:
-			@$(RM) $(OBJS) $(OBJM)
-			$(CLEAN)
+			$(RM) $(OBJS) $(OBJM)
 
 fclean:		clean
-			@$(RM) $(NAME) $(TNAME)
-			$(DELETE)
+			$(RM) $(NAME) $(TNAME)
 
 re:			fclean all
 
-.PHONY:		all clean fclean re test
+.PHONY:		all clean fclean re

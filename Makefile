@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/02/05 11:20:18 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/02/06 11:03:18 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,8 +14,6 @@
 
 SRC			=	ft_printf.c buffer_char.c buffer.c buffer_add.c\
 				char_handlers.c num_handlers.c flags.c format_flags.c
-
-SRCS		=	$(addprefix $(DIR_SRCS)/,$(SRC))
 
 OBJS		=	$(addprefix $(DIR_OUT)/,$(SRC:.c=.o))
 
@@ -39,27 +37,11 @@ LIBFT		=	$(DIR_LIBFT)/$(LIBFT_NAME)
 
 CC			=	cc
 
-CFLAGS		=	-Wall -Wextra -Werror
-
-PRINTF_FLAG	=	-L. -lftprintf
+CFLAGS		=	-Wall -Wextra -Werror -fPIE
 
 LIB			=	ar rc
 
 RM			=	rm -f
-
-RMDIR		=	rmdir
-
-##### Colors for the shell #####
-
-GREEN		=	\033[1;32m
-
-RED			=	\033[1;31m
-
-END			=	\033[0m
-
-##### Variable to know if DIR_OUT exists #####
-
-OUT			=	$(shell if [ -d $(DIR_OUT) ]; then echo "true";fi;)
 
 ##### RULES #####
 
@@ -69,35 +51,22 @@ bonus:				$(NAME)
 
 $(NAME):			$(OBJS)
 					make -C $(DIR_LIBFT) all
-					@cp $(LIBFT) ./$(NAME)
-					@echo "$(GREEN)$(LIBFT_NAME) copied in current folder$(END)"
-					@$(LIB) $(NAME) $(OBJS)
-					@echo "$(GREEN)$(NAME) built$(END)"
+					cp $(LIBFT) ./$(NAME)
+					$(LIB) $(NAME) $(OBJS)
 
 $(DIR_OUT)/%.o:		$(DIR_SRCS)/%.c | $(DIR_OUT)
-					@$(CC) $(CFLAGS) -I $(HEADERS) -o $@ -c $<
-					@echo "$(GREEN)$< compiled$(END)"
+					$(CC) $(CFLAGS) -I $(HEADERS) -o $@ -c $<
 
 $(DIR_OUT):
-					@mkdir -p $@
-					@echo "$(GREEN)$(DIR_OUT) folder created$(END)"
+					mkdir -p $(DIR_OUT)
 
-ifeq ($(OUT), true)
 clean:				
-					@$(RM) $(OBJS) $(BONUS_OBJS)
-					@$(RMDIR) $(DIR_OUT)
-					@echo "$(GREEN)Objects and objects folder deleted$(END)"
-else
-clean:
-					@echo "$(GREEN)Objects folder already deleted$(END)"
-endif
+					rm -rf $(DIR_OUT)
 
 fclean:				clean
-					@make -C $(DIR_LIBFT) fclean
-					@echo "$(GREEN)fclean libft$(END)"
-					@$(RM) $(NAME)
-					@echo "$(GREEN)$(NAME) deleted$(END)"
+					make -C $(DIR_LIBFT) fclean
+					$(RM) $(NAME)
 
 re:					fclean all
 
-.PHONY:				all clean flcean re libft bonus
+.PHONY:				all clean fclean re libft bonus
