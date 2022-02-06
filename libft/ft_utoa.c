@@ -26,7 +26,7 @@ static char	*zero(void)
 
 char	*ft_utoa(unsigned long n)
 {
-	unsigned long	pow;
+	int	pow;
 	char			*s;
 	size_t			i;
 
