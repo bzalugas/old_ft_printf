@@ -6,7 +6,7 @@
 #    By: bzalugas <bzalugas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/26 13:43:55 by bzalugas          #+#    #+#              #
-#    Updated: 2022/02/06 11:03:18 by bzalugas         ###   ########.fr        #
+#    Updated: 2022/02/06 13:25:19 by bzalugas         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -37,7 +37,7 @@ LIBFT		=	$(DIR_LIBFT)/$(LIBFT_NAME)
 
 CC			=	cc
 
-CFLAGS		=	-Wall -Wextra -Werror -fPIE
+CFLAGS		=	-Wall -Wextra -Werror
 
 LIB			=	ar rc
 
